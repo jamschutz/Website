@@ -36,6 +36,7 @@ head title {
     font-size: 25px;
     color: #818181;
     display: block;
+    cursor: pointer;
 }
 
 .sidebar-nav .title {
@@ -47,5 +48,22 @@ head title {
 }
 
 .sidebar-nav a:hover {
-    color: #f1f1f1;
+    color: #dd90bd;
+}
+
+
+.main-container {
+    height: 100%;
+    /* position: fixed; */
+    padding-top: 20px;
+    /* padding-left: 275px; */
+    font-size: 18px;
+    color: #605e72;
+    /* width: 750px; */
+}
+
+
+.centered {
+    padding-left: 35%;
+    width: 350px;
 }
