@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+
 <head>
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="styles/nav.css">
+    <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="index.html">
+    <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="writing/baba_is_you.html">
+    <META HTTP-EQUIV="Access-Control-Allow-Origin" CONTENT="info/about.html">
+    <script src="code/nav.js"></script>
 </head>
 
-<div class="nav-menu">
+<body class="nav-menu">
     <div>
-        <span class="menu-header" style="white-space: nowrap">. . . . .Joey Schutz. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</span><br/><br/>
+        <div>
+            <span class="menu-header" style="white-space: nowrap">. . . . .Joey Schutz. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</span><br/><br/>
+        </div>
+        
+        <!-- Info -->
+        <div>
+            <span class="menu-header">Info</span><br/>
+            <a class="menu-item" href="info/about.html" onclick="load('info/about.html'); setHeaderText('ABOUT')" target="main">
+                <span class="menu-item-text">About</span>
+            </a>
+        </div><br/>
+        
+        <!-- Games -->
+        <div>
+            <span class="menu-header">Games</span><br/>
+            <a class="menu-item" href="games/luigi.html" onclick="load('games/luigi.html')" target="main">
+                <i class="menu-item-text">Winter, 2001: Someone tell Luigi I love him</i>
+            </a><br>
+            <a class="menu-item" href="games/joanie.html" onclick="load('games/joanie.html')" target="main">
+                <i class="menu-item-text">Joanie</i>
+            </a><br>
+            <a class="menu-item" href="games/maps.html" onclick="load('games/maps.html')" target="main">
+                <i class="menu-item-text">Maps of the Known World</i>
+            </a><br>
+        </div><br/>
+        
+        <!-- Writing -->
+        <div>
+            <span class="menu-header">Writings</span><br/>
+            <a class="menu-item" href="writing/baba_is_you.html" onclick="load('writing/baba_is_you.html'); setHeaderText('Baba Is You')" target="main">
+                <i class="menu-item-text">Baba Is You, and some musings on the puzzle genre</i>
+            </a><br>
+        </div><br/>
+        
+        <!-- Music -->
+        <div>
+            <span class="menu-header">Music</span><br/>
+            <a class="menu-item" href="music/musicIndex.html" onclick="load('music/musicIndex.html')" target="main">
+                <i class="menu-item-text">Music for games</i>
+            </a><br>
+        </div><br/>
+        
+        <!-- Miscellaneous -->
+        <div>
+            <span class="menu-header">Miscellaneous</span><br/>
+            <a class="menu-item" href="miscellaneous/void.html" onclick="load('miscellaneous/void.html')" target="main">
+                <i class="menu-item-text">Return to the void</i>
+            </a><br>
+        </div><br/>
     </div>
-    
-    <!-- Info -->
-    <div>
-        <span class="menu-header">Info</span><br/>
-        <a class="menu-item" href="info/about.html" onclick="load('info/about.html')" target="main">
-            About
-        </a>
-    </div><br/>
-    
-    <!-- Games -->
-    <div>
-        <span class="menu-header">Games</span><br/>
-        <a class="menu-item" href="games/luigi.html" onclick="load('games/luigi.html')" target="main">
-            <i>Winter, 2001: Someone tell Luigi I love him</i>
-        </a><br>
-        <a class="menu-item" href="games/joanie.html" onclick="load('games/joanie.html')" target="main">
-            <i>Joanie</i>
-        </a><br>
-        <a class="menu-item" href="games/maps.html" onclick="load('games/maps.html')" target="main">
-            <i>Maps of the Known World</i>
-        </a><br>
-    </div><br/>
-    
-    <!-- Writing -->
-    <div>
-        <span class="menu-header">Writings</span><br/>
-        <a class="menu-item" href="writing/baba_is_you.html" onclick="load('writing/baba_is_you.html')" target="main">
-            <i>Baba Is You, and some musings on the puzzle genre</i>
-        </a><br>
-    </div><br/>
-    
-    <!-- Music -->
-    <div>
-        <span class="menu-header">Music</span><br/>
-        <a class="menu-item" href="music/musicIndex.html" onclick="load('music/musicIndex.html')" target="main">
-            <i>Music for games</i>
-        </a><br>
-    </div><br/>
-    
-    <!-- Miscellaneous -->
-    <div>
-        <span class="menu-header">Miscellaneous</span><br/>
-        <a class="menu-item" href="landing.html" onclick="load('landing.html')" target="main">
-            <i>Return to the void</i>
-        </a><br>
-    </div><br/>
-</div>
+</body>
+
+<script>
+    function loadPage(filePath) {
+        loadPath(filePath, '');
+    }
+
+    function loadPage(filePath, header) {
+        document.querySelector('iframe[name="main"]').src = filePath;
+    }
+
+
+    async function setHeaderText(pageName) {
+        var headerText = ". . . . . . . . . . . . . . . . . . . . . . . "; 
+        headerText += pageName;
+        headerText += " . . . . . . . . . . . . . . . . . . . . . . .";
+        // console.log("setting header text to: " + headerText);
+        // let test = top.window.main.document;
+        let indexUrl = location.href.substring(0,location.href.lastIndexOf('/')) + '/index.html';
+        console.log(indexUrl);
+        // await new Promise(r => setTimeout(r, 1000));
+        top.postMessage('hello', indexUrl);
+        // console.log(test);
+        // top.window.main.document.getElementById("headerTextField").innerHTML = headerText;
+    }
+</script>
