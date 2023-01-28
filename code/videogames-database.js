@@ -31,19 +31,26 @@ function createTableRow(data, isHeader) {
     // skip the first column, because it's the ID column
     for(let i = 1; i < data.length; i++) {
         var col = document.createElement("td");
-        var textNode = document.createTextNode(data[i]);
+        let text = getMultipleEntriesFormatted(data[i]);
+        var textNode = document.createTextNode(text);
 
         col.appendChild(textNode);
         row.appendChild(col);
     }
-    // data.forEach( item => {
-    //     var col = document.createElement("td");
-    //     var textNode = document.createTextNode(item);
-
-    //     col.appendChild(textNode);
-    //     row.appendChild(col);
-    // });
     table.appendChild(row);
+}
+
+
+
+function getMultipleEntriesFormatted(data) {
+    let entries = data.split("|");
+    if(entries.length === 1) return data;
+
+    for(let i = 0; i < entries.length; i++) {
+        entries[i] = entries[i].trim();
+    }
+
+    return entries.join(", ");
 }
 
 

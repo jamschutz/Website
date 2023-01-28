@@ -1,0 +1,17 @@
+table thead tr {
+    font-weight: bold;
+    background-color: #63d297;
+}
+
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #d9ead3;
+}
+
+table {
+    background-color: #e9e7e7;
+}
