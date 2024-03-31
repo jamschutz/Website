@@ -6,7 +6,9 @@ var attributes = {}
 
 async function submitRacer() {
     let name = document.getElementById('name').value;
-    let speed = document.getElementById('speed').value;
+    let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
+    let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
+    let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
     
     await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSenDKu3U4DCLzprMmBJFPXinZLHQBXefLr1_2kZE5xpQ91tMQ/formResponse', {
       method: 'POST',
@@ -15,7 +17,9 @@ async function submitRacer() {
       },
       body: new URLSearchParams({
         'entry.674049401': name,
-        'entry.1074850540': speed
+        'entry.1074850540': speed,
+		'entry.1545299839': stamina,
+		'entry.526267970':  determination
       }),
       mode: 'no-cors'
     })
