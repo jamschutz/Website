@@ -5,19 +5,6 @@ const speedEntryId = 'entry.1074850540';
 async function submitRacer() {
     let name = document.getElementById('name').value;
     let speed = document.getElementById('speed').value;
-
-    // var details = {
-    //     'name': name,
-    //     'speed': speed
-    // };
-    
-    // var formBody = [];
-    // for (var property in details) {
-    //   var encodedKey = encodeURIComponent(property);
-    //   var encodedValue = encodeURIComponent(details[property]);
-    //   formBody.push(encodedKey + "=" + encodedValue);
-    // }
-    // formBody = formBody.join("&");
     
     await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSenDKu3U4DCLzprMmBJFPXinZLHQBXefLr1_2kZE5xpQ91tMQ/formResponse', {
       method: 'POST',
