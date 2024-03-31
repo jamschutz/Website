@@ -3,7 +3,7 @@
 ---------------------------------------*/
 @font-face {
     font-family: 'MainFont-regular';
-    src: url('Gambetta-Variable.woff2');
+    src: url('assets/Gambetta-Variable.woff2');
 }
 @font-face {
     font-family: 'MainFont-bold';
@@ -48,7 +48,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background-image: url('clouds.jpg');
+    background-image: url('assets/clouds.jpg');
     background-repeat: repeat;
     font-family: 'MainFont-regular';
     font-weight: 450;
@@ -288,12 +288,17 @@ header a:hover {
 }
 .Blog-commentNameInput {
     margin-bottom: 15px;
+    display: flex;
 }
 .Blog-commentNameInputLabel {
     font-family: 'MainFont-regular';
     font-size: 16px;
     font-weight: 700;
     color: var(--link-purple);
+    flex-basis: 120px;
+    text-align: right;
+    align-self: center;
+    margin-right: 10px;
 }
 .Blog-commentNameInput input {
     background-color : var(--header-green);
@@ -304,6 +309,16 @@ header a:hover {
     font-size: 16px;
     font-weight: 500;
     color: var(--link-purple);
+    width: 100px;
+}
+.racer-stats button {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
 }
 .Blog-commentInputField button {
     font-family: 'MainFont-regular';
@@ -331,7 +346,7 @@ footer {
     margin: auto;
     margin-top: 70px;
 }
-footer hr {
+hr {
     height: 2px;
     border: 0;
     background-color: var(--background-pink);
@@ -365,4 +380,19 @@ footer hr {
 ---------------------------------------*/
 .Links-container {
     margin-top: 50px;
+}
+
+
+.racerPointsAvailable {
+    margin-left: 100px;
+    padding: 10px;
+    width: 200px;
+}
+
+.racerPointsText {
+    font-weight: 800;
+    padding: 10px;
+    background: var(--background-pink);
+    color: var(--link-purple);
+    text-shadow: var(--header-green) 1px 1px 2px;
 }
