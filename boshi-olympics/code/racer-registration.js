@@ -1,6 +1,8 @@
 const nameEntryId = 'entry.674049401';
 const speedEntryId = 'entry.1074850540';
 
+var pointsAvailable;
+var attributes = {}
 
 async function submitRacer() {
     let name = document.getElementById('name').value;
@@ -23,6 +25,32 @@ async function submitRacer() {
 }
 
 
+
+function incrementAttribute(attribute) {
+	console.log('incrementing ' + attribute);
+    let points = parseInt(pointsAvailable.innerText);
+    if(points <= 0)
+        return;
+
+    let attributeElement = attributes[attribute];
+    attributeElement.value++;
+
+    points--;
+    pointsAvailable.innerText = points;
+
+}
+function decrementAttribute(attribute) {
+	console.log('decrementing ' + attribute);
+    let attributeElement = document.getElementById(attribute);
+    if(attributeElement.value > 0) {
+        attributeElement.value--;
+
+        let points = parseInt(pointsAvailable.innerText) + 1;
+        pointsAvailable.innerText = points;
+    }
+}
+
+
 // on window load
 (function(window, document, undefined) {  
     window.onload = init;
@@ -30,5 +58,19 @@ async function submitRacer() {
     async function init() {
         let submitCommentBtn = document.getElementById('submit-racer-btn');
         submitCommentBtn.addEventListener("click", submitRacer);
+
+        ['speed', 'stamina', 'determination'].forEach(attribute => {
+            attributes[attribute] = document.getElementById(attribute);
+			let plusBtn = document.getElementById(`${attribute}Plus`);
+			let minusBtn = document.getElementById(`${attribute}Minus`);
+			
+			plusBtn.addEventListener('click', () => {
+				incrementAttribute(attribute);
+			});
+			minusBtn.addEventListener('click', () => {
+				decrementAttribute(attribute);
+			});
+        });
+        pointsAvailable = document.getElementById('racerPoints');
     }
 })(window, document, undefined);
