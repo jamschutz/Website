@@ -108,6 +108,8 @@ function decrementAttribute(attribute) {
         let dropdown = document.getElementById('racerDropdown');
         dropdown.addEventListener('change', onRacerSelection);
 
+        showHidePage('Training');
+
         ['speed', 'stamina', 'determination'].forEach(attribute => {
             attributes[attribute] = document.getElementById(attribute);
 			let plusBtn = document.getElementById(`${attribute}Plus`);
