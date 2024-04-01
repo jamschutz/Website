@@ -25,5 +25,7 @@ async function cheer() {
     async function init() {
         let submitCommentBtn = document.getElementById('cheer-btn');
         submitCommentBtn.addEventListener("click", cheer);
+
+        showHidePage('Racing');
     }
 })(window, document, undefined);

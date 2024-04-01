@@ -19,7 +19,8 @@
 
     <link rel="stylesheet" type="text/css" href="olympics.css">
     
-        <script src="code/race.js"></script>
+    <script src="code/showHidePage.js"></script>
+    <script src="code/race.js"></script>
     
 </head>
 
@@ -37,8 +38,14 @@
         </nav>
     </div>
 </header>
+
+    <div class="Body" id="disallowedMessage" style="display: none">
+        <div class="Body-container" style="margin-top: 35px;">
+            there are no races going on right now. come back when a race is happening!
+        </div>
+    </div>
         
-        <div class="Body">
+        <div class="Body" id="realPage" style="display: none">
             <div class="Body-container">
                 
 <div class="Blog-header" style="margin-top: 35px;">
