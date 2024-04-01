@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+
+<meta name="title" property="og:title" content="boshi olympics - training">
+<meta name="type" property="og:type" content="website">
+<meta name="image" property="og:image" content="clouds.jpg">
+<meta name="url" property="og:url" content="">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="blog.joeyschutz.com">
+<meta property="twitter:url" content="">
+<meta name="twitter:title" content="boshi olympics - training">
+<meta name="twitter:image" content="clouds.jpg">
+
+<head>
+    <title>boshi olympics - training</title>
+    <link rel="icon" href="/img/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="olympics.css">
+
+    <script src="code/training.js"></script>
+
+</head>
+
+<html lang="en">
+
+<body>
+    <header>
+    <div class="Header-container">
+        <nav>
+            <ul>
+                <li><a href="/boshi-olympics/racer-registration.html">registration</a></li>
+                <li><a href="/boshi-olympics/race.html">racing</a></li>
+                <li><a href="/boshi-olympics/training.html">training</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <div class="Body">
+        <div class="Body-container">
+
+            <div class="Blog-header" style="margin-top: 35px;">
+                -------- training --------
+            </div>
+
+            <div id="Blog-commentsSectionContainer">
+                <div class="Blog-commentNameInput" style="display: block;">
+                    <div class="Blog-commentNameInputLabel" style="text-align: left;">select the racer you'd like to train:</div>
+                    <select name="racerDropdown" id="racerDropdown">
+                        <option disabled selected value="">--select your racer--</option>
+                    </select>
+                </div>
+                
+                <hr>
+                <div class="racerPointsAvailable">
+                    <div class="racerPointsText">
+                        Points Available: <span id="racerPoints">25</span>
+                    </div>                    
+                </div>
+
+                <div class="Blog-commentNameInput">
+                    <div class="Blog-commentNameInputLabel">speed:</div>
+                    <div class="racer-stats">
+                        <button id="speedMinus">-</button>
+                        <input id="speed" readonly type="number" value="0" placeholder="0">
+                        <button id="speedPlus">+</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="Blog-commentNameInput">
+                    <div class="Blog-commentNameInputLabel">stamina:</div>
+                    <div class="racer-stats">
+                        <button id="staminaMinus">-</button>
+                        <input id="stamina" readonly type="number" value="1">
+                        <button id="staminaPlus">+</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="Blog-commentNameInput">
+                    <div class="Blog-commentNameInputLabel">determination:</div>
+                    <div class="racer-stats">
+                        <button id="determinationMinus">-</button>
+                        <input id="determination" readonly type="number" value="0" placeholder="0">
+                        <button id="determinationPlus">+</button>
+                    </div>
+                </div>
+                <br/>
+                <div class="Blog-commentInputField">
+                    <button style="margin-left: 152px;" id="submit-racer-btn">submit racer</button>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div>
+                stats explanation:
+                <br/>
+                <br/>
+
+                <b>speed:</b> this is how fast your character will go each time you cheer them on.
+                <br/>
+                <br/>
+                <b>stamina:</b> this is how many times you can cheer your character before they get tired, and their speed decreases by 1 for the rest of race. i.e. if your stamina is 5, every 5 cheers your speed will go down by 1
+                <br/>
+                <br/>
+                <b>determination:</b> when your stamina runs out, this is the % chance it will automatically refill and your speed instead goes up by 120%
+            </div>
+            <footer>
+                <hr>
+                <div>
+                    this site is written and maintained by joey (me). you can find <a
+                        href="https://github.com/jamschutz/blog-site">the source code</a> over yonder :) <br />
+                    you can also find me on <a href="https://jamschutz.itch.io/">itch</a>, <a
+                        href="https://twitter.com/SchutzJoey">twitter</a>, <a
+                        href="https://bsky.app/profile/joeyschutz.bsky.social">bluesky</a>, and good old-fashioned <a
+                        href="mailto: schutzjoey@gmail.com">email</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -116,6 +116,10 @@ header a:hover {
     .Blog-commentInputField input[type="text"], textarea {
         width: 87vw;
     }
+
+    .Blog-commentNameInput select {
+        width: 87vw;
+    }
 }
 /* Extra Small Devices, Phones */
 @media only screen and (min-width : 480px) and (max-device-width: 768px) {
@@ -139,6 +143,10 @@ header a:hover {
         width: 83vw;
     }
     .Blog-commentInputField input[type="text"], textarea {
+        width: 83vw;
+    }
+
+    .Blog-commentNameInput select {
         width: 83vw;
     }
 }
@@ -169,6 +177,10 @@ header a:hover {
     .Blog-commentInputField input[type="text"], textarea {
         width: 78vw;
     }
+
+    .Blog-commentNameInput select {
+        width: 78vw;
+    }
 }
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 874px) {
@@ -192,6 +204,10 @@ header a:hover {
         width: 688px;
     }
     .Blog-commentInputField input[type="text"], textarea {
+        width: 688px;
+    }
+
+    .Blog-commentNameInput select {
         width: 688px;
     }
 }
@@ -310,6 +326,16 @@ header a:hover {
     font-weight: 500;
     color: var(--link-purple);
     width: 100px;
+}
+.Blog-commentNameInput select {
+    background-color : var(--header-green);
+    /* width: 688px;  */
+    border: 1px solid var(--link-purple); 
+    padding: 5px;
+    font-family: 'MainFont-regular';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--link-purple);
 }
 .racer-stats button {
     font-family: 'MainFont-regular';
