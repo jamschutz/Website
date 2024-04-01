@@ -13,6 +13,11 @@ var minValues = {
     'determination': 0
 }
 var selectedRacer;
+var currentState;
+var upgrades;
+
+var upgradeContainer;
+var alreadyTrainedMsg;
 
 const defaultPointsAvailable = 15;
 
@@ -32,7 +37,8 @@ async function submitTrainingData() {
         'entry.1836487193': speed,
 		'entry.901390338': stamina,
 		'entry.1030287421':  determination,
-        'entry.994883380': selectedRacer['id']
+        'entry.994883380': selectedRacer['id'],
+        'entry.393707600': currentState
         // 'entry.939624832': items
       }),
       mode: 'no-cors'
@@ -81,6 +87,16 @@ function onRacerSelection(event) {
     let selectedRacerName = event.target.value;
     selectedRacer = getRacer(selectedRacerName);
 
+    if(alreadyTrained(selectedRacer)) {
+        upgradeContainer.style.display = 'none';
+        alreadyTrainedMsg.style.display = 'block';
+        return;
+    }
+    else {
+        upgradeContainer.style.display = 'block';
+        alreadyTrainedMsg.style.display = 'none';
+    }
+
     pointsAvailable.innerText = defaultPointsAvailable;
     ['speed', 'stamina', 'determination'].forEach(attribute => {
         let racerStat = parseInt(selectedRacer[attribute]);
@@ -128,6 +144,18 @@ function decrementAttribute(attribute) {
 }
 
 
+function alreadyTrained(racer) {
+    for(let i = 0; i < upgrades.length; i++) {
+        console.log(upgrades[i]);
+        if(racer['id'] === upgrades[i]['racerId'] && currentState == upgrades[i]['stateSubmitted']) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 // on window load
 (function(window, document, undefined) {  
     window.onload = init;
@@ -138,8 +166,6 @@ function decrementAttribute(attribute) {
 
         let dropdown = document.getElementById('racerDropdown');
         dropdown.addEventListener('change', onRacerSelection);
-
-        showHidePage('Training');
 
         ['speed', 'stamina', 'determination'].forEach(attribute => {
             attributes[attribute] = document.getElementById(attribute);
@@ -155,6 +181,12 @@ function decrementAttribute(attribute) {
         });
         pointsAvailable = document.getElementById('racerPoints');
 
+        upgradeContainer = document.getElementById('trainingPoints')
+        alreadyTrainedMsg = document.getElementById('alreadyTrainedMsg');
+
+        currentState = await getState();
+        upgrades = await getUpgrades();
         loadRacers();
+        showHidePage('Training');
     }
 })(window, document, undefined);
