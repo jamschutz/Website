@@ -98,8 +98,9 @@ function onRacerSelection(event) {
     }
 
     pointsAvailable.innerText = defaultPointsAvailable;
+    let stats = getBestRaceStats();
     ['speed', 'stamina', 'determination'].forEach(attribute => {
-        let racerStat = parseInt(selectedRacer[attribute]);
+        let racerStat = parseInt(stats[attribute]);
         attributes[attribute].value = racerStat;
 
         minValues[attribute] = racerStat;
@@ -115,6 +116,17 @@ function getRacer(name) {
 
     console.error('unable to find racer with name: ' + name);
     console.error('these are the racers i have: ' + racers);
+}
+
+
+function getBestRaceStats() {
+    for(let i = upgrades.length - 1; i >= 0; i--) {
+        if(upgrades[i]['racerId'] === selectedRacer['id']) {
+            return upgrades[i];
+        }
+    }
+
+    return selectedRacer;
 }
 
 
