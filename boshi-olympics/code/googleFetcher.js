@@ -32,6 +32,5 @@ async function getUpgrades() {
         });
     }
 
-    console.log(upgrades);
     return upgrades;
 }

@@ -38,7 +38,7 @@ async function submitTrainingData() {
 		'entry.901390338': stamina,
 		'entry.1030287421':  determination,
         'entry.994883380': selectedRacer['id'],
-        'entry.393707600': currentState
+        'entry.393707600': currentState['id']
         // 'entry.939624832': items
       }),
       mode: 'no-cors'
@@ -146,8 +146,7 @@ function decrementAttribute(attribute) {
 
 function alreadyTrained(racer) {
     for(let i = 0; i < upgrades.length; i++) {
-        console.log(upgrades[i]);
-        if(racer['id'] === upgrades[i]['racerId'] && currentState == upgrades[i]['stateSubmitted']) {
+        if(racer['id'] === upgrades[i]['racerId'] && currentState['id'] == upgrades[i]['stateSubmitted']) {
             return true;
         }
     }
