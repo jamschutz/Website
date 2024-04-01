@@ -14,6 +14,7 @@ async function submitRacer() {
     let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
     let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
     let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
+    let id = uuidv4();
     
     await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSenDKu3U4DCLzprMmBJFPXinZLHQBXefLr1_2kZE5xpQ91tMQ/formResponse', {
       method: 'POST',
@@ -24,7 +25,8 @@ async function submitRacer() {
         'entry.674049401': name,
         'entry.1074850540': speed,
 		'entry.1545299839': stamina,
-		'entry.526267970':  determination
+		'entry.526267970':  determination,
+        'entry.422582051': id
       }),
       mode: 'no-cors'
     })
@@ -51,7 +53,7 @@ function incrementAttribute(attribute) {
 function decrementAttribute(attribute) {
 	console.log('decrementing ' + attribute);
     let attributeElement = document.getElementById(attribute);
-	let minimumValue = attribute == 'stamina'? 1 : 0;
+	let minimumValue = attribute == 'determination'? 0 : 1;
     if(attributeElement.value > minimumValue) {
         attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
 

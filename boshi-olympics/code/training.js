@@ -12,8 +12,35 @@ var minValues = {
     'stamina': 0,
     'determination': 0
 }
+var selectedRacer;
 
 const defaultPointsAvailable = 15;
+
+
+async function submitTrainingData() {
+    let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
+    let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
+    let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
+    
+    await fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSczIvqsf50Dp833qd6jsSo2quE9F7QLiC-nET1HvdV7dD_1oQ/formResponse', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        'entry.1584351445': selectedRacer['name'],
+        'entry.1836487193': speed,
+		'entry.901390338': stamina,
+		'entry.1030287421':  determination,
+        'entry.994883380': selectedRacer['id']
+        // 'entry.939624832': items
+      }),
+      mode: 'no-cors'
+    })
+    
+    window.location.href ="/boshi-olympics/racer-submitted.html";
+}
+
 
 async function loadRacers() {   
     let uri = 'https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/racers?key=AIzaSyDVHHN6eVNT8JjGRN7v9c9rte_QdyDXmPk';
@@ -32,7 +59,8 @@ async function loadRacers() {
             'name': racer[1],
             'speed': racer[2],
             'stamina': racer[3],
-            'determination': racer[4]
+            'determination': racer[4],
+            'id': racer[5]
         });
     }
 
@@ -51,11 +79,11 @@ async function loadRacers() {
 
 function onRacerSelection(event) {
     let selectedRacerName = event.target.value;
-    let racer = getRacer(selectedRacerName);
+    selectedRacer = getRacer(selectedRacerName);
 
     pointsAvailable.innerText = defaultPointsAvailable;
     ['speed', 'stamina', 'determination'].forEach(attribute => {
-        let racerStat = parseInt(racer[attribute]);
+        let racerStat = parseInt(selectedRacer[attribute]);
         attributes[attribute].value = racerStat;
 
         minValues[attribute] = racerStat;
@@ -105,6 +133,9 @@ function decrementAttribute(attribute) {
     window.onload = init;
   
     async function init() {
+        let submitCommentBtn = document.getElementById('submit-btn');
+        submitCommentBtn.addEventListener("click", submitTrainingData);
+
         let dropdown = document.getElementById('racerDropdown');
         dropdown.addEventListener('change', onRacerSelection);
 
