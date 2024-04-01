@@ -3,6 +3,11 @@ const speedEntryId = 'entry.1074850540';
 
 var pointsAvailable;
 var attributes = {}
+var attributeIncrements = {
+	'speed': 1,
+	'stamina': 2,
+	'determination': 2
+}
 
 async function submitRacer() {
     let name = document.getElementById('name').value;
@@ -37,7 +42,7 @@ function incrementAttribute(attribute) {
         return;
 
     let attributeElement = attributes[attribute];
-    attributeElement.value++;
+    attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
 
     points--;
     pointsAvailable.innerText = points;
@@ -46,8 +51,9 @@ function incrementAttribute(attribute) {
 function decrementAttribute(attribute) {
 	console.log('decrementing ' + attribute);
     let attributeElement = document.getElementById(attribute);
-    if(attributeElement.value > 0) {
-        attributeElement.value--;
+	let minimumValue = attribute == 'stamina'? 1 : 0;
+    if(attributeElement.value > minimumValue) {
+        attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
 
         let points = parseInt(pointsAvailable.innerText) + 1;
         pointsAvailable.innerText = points;
