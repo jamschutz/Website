@@ -86,6 +86,7 @@ async function loadRacers() {
 function onRacerSelection(event) {
     let selectedRacerName = event.target.value;
     selectedRacer = getRacer(selectedRacerName);
+    console.log(selectedRacer);
 
     if(alreadyTrained(selectedRacer)) {
         upgradeContainer.style.display = 'none';
@@ -99,6 +100,7 @@ function onRacerSelection(event) {
 
     pointsAvailable.innerText = defaultPointsAvailable;
     let stats = getBestRaceStats();
+    console.log(stats);
     ['speed', 'stamina', 'determination'].forEach(attribute => {
         let racerStat = parseInt(stats[attribute]);
         attributes[attribute].value = racerStat;
@@ -121,7 +123,7 @@ function getRacer(name) {
 
 function getBestRaceStats() {
     for(let i = upgrades.length - 1; i >= 0; i--) {
-        if(upgrades[i]['racerId'] === selectedRacer['id']) {
+        if(upgrades[i]['racerId'] === selectedRacer['id'] && upgrades[i]['racerName'] === selectedRacer['name']) {
             return upgrades[i];
         }
     }
