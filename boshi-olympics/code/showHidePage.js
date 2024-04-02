@@ -1,5 +1,5 @@
 async function getCurrentState() {
-    let uri = 'https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/state?key=AIzaSyDVHHN6eVNT8JjGRN7v9c9rte_QdyDXmPk';
+    let uri = getSheetsUrl('state');
     const response = await fetch(uri);
     const statesJson = await response.json();
 

@@ -1,5 +1,11 @@
-async function getState() {   
-    let uri = 'https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/state?key=AIzaSyDVHHN6eVNT8JjGRN7v9c9rte_QdyDXmPk';
+
+function getSheetsUrl(targetSheet) {
+    return `https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/${targetSheet}?key=${API_KEY}`;
+}
+
+
+async function getState() {
+    let uri = getSheetsUrl('state');
     const response = await fetch(uri);
     const statesJson = await response.json();
 
@@ -14,7 +20,7 @@ async function getState() {
 
 
 async function getUpgrades() {
-    let uri = 'https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/upgrades?key=AIzaSyDVHHN6eVNT8JjGRN7v9c9rte_QdyDXmPk';
+    let uri = getSheetsUrl('upgrades');
     const response = await fetch(uri);
     const statesJson = await response.json();
 
