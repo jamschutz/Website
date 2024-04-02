@@ -1,6 +1,6 @@
 
 function getSheetsUrl(targetSheet) {
-    return `https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/${targetSheet}?key=${API_KEY}`;
+    return `https://sheets.googleapis.com/v4/spreadsheets/15fh5Mo-S9DDzFVaBBkbjw5np9JJEMs8393iBXRlg2fo/values/${targetSheet}?key=AIzaSyDVHHN6eVNT8JjGRN7v9c9rte_QdyDXmPk`;
 }
 
 
