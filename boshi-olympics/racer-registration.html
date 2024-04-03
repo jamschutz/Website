@@ -47,48 +47,73 @@
             </div>
 
             <div id="Blog-commentsSectionContainer">
-                <div class="Blog-commentNameInput">
-                    <div class="Blog-commentNameInputLabel">name:</div>
-                    <input id="name" style="width: 200px;" type="text" placeholder="racer's name">
-                </div>
-                
-                <hr>
-                <div class="racerPointsAvailable">
-                    <div class="racerPointsText">
-                        Points Available: <span id="racerPoints">25</span>
-                    </div>                    
+                <div class="Blog-commentNameInput" style="display: block;">
+                    <div class="Blog-commentNameInputLabel" style="text-align: left;">select your racer type:</div>
+                    <select name="racerDropdown" id="racerDropdown">
+                        <option disabled selected value="">--select your racer type--</option>
+                        <option value="religious">religious</option>
+                        <option value="crowdPleaser">crowd pleaser</option>
+                        <option value="loner">loner</option>
+                        <option value="speedster">speedster</option>
+                        <option value="focuser">focuser</option>
+                        <option value="pacer">pacer</option>
+                    </select>
                 </div>
 
-                <div class="Blog-commentNameInput">
-                    <div class="Blog-commentNameInputLabel">speed:</div>
-                    <div class="racer-stats">
-                        <button id="speedMinus">-</button>
-                        <input id="speed" readonly type="number" value="1">
-                        <button id="speedPlus">+</button>
+                <div>
+                    you chose <span class="neonTextLabel" id="racerTypeDescription">charger</span>.
+                    <div id="racerTypeDescription">
+                        chargers are GOOD
+                    </div>
+
+                </div>
+
+                <div id="racerInfoContainer" style="display: none;">
+                    <div class="Blog-commentNameInput">
+                        <div class="Blog-commentNameInputLabel">name:</div>
+                        <input id="name" style="width: 200px;" type="text" placeholder="racer's name">
+                    </div>
+                    
+                    <hr>
+                    <div class="racerPointsAvailable">
+                        <div class="racerPointsText">
+                            Points Available: <span id="racerPoints">25</span>
+                        </div>                    
+                    </div>
+    
+                    <div class="Blog-commentNameInput">
+                        <div class="Blog-commentNameInputLabel">speed:</div>
+                        <div class="racer-stats">
+                            <button id="speedMinus">-</button>
+                            <input id="speed" readonly type="number" value="1">
+                            <button id="speedPlus">+</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="Blog-commentNameInput">
+                        <div class="Blog-commentNameInputLabel">stamina:</div>
+                        <div class="racer-stats">
+                            <button id="staminaMinus">-</button>
+                            <input id="stamina" readonly type="number" value="1">
+                            <button id="staminaPlus">+</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="Blog-commentNameInput">
+                        <div class="Blog-commentNameInputLabel">determination:</div>
+                        <div class="racer-stats">
+                            <button id="determinationMinus">-</button>
+                            <input id="determination" readonly type="number" value="0" placeholder="0">
+                            <button id="determinationPlus">+</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="Blog-commentInputField">
+                        <button style="margin-left: 152px;" id="submit-racer-btn">submit racer</button>
                     </div>
                 </div>
-                <br/>
-                <div class="Blog-commentNameInput">
-                    <div class="Blog-commentNameInputLabel">stamina:</div>
-                    <div class="racer-stats">
-                        <button id="staminaMinus">-</button>
-                        <input id="stamina" readonly type="number" value="1">
-                        <button id="staminaPlus">+</button>
-                    </div>
-                </div>
-                <br/>
-                <div class="Blog-commentNameInput">
-                    <div class="Blog-commentNameInputLabel">determination:</div>
-                    <div class="racer-stats">
-                        <button id="determinationMinus">-</button>
-                        <input id="determination" readonly type="number" value="0" placeholder="0">
-                        <button id="determinationPlus">+</button>
-                    </div>
-                </div>
-                <br/>
-                <div class="Blog-commentInputField">
-                    <button style="margin-left: 152px;" id="submit-racer-btn">submit racer</button>
-                </div>
+
+                
             </div>
             <!-- <br/>
             <br/>
