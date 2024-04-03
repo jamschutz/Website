@@ -422,3 +422,19 @@ hr {
     color: var(--link-purple);
     text-shadow: var(--header-green) 1px 1px 2px;
 }
+
+#youAreCheeringFor {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--link-purple);
+    text-shadow:
+        0 0 7px var(--background-pink),
+        0 0 10px var(--background-pink),
+        0 0 21px var(--background-pink),
+        0 0 42px var(--background-pink),
+        0 0 82px var(--background-pink),
+        0 0 92px var(--background-pink),
+        0 0 102px var(--background-pink),
+        0 0 151px var(--background-pink);
+    }
+}
