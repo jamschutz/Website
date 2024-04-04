@@ -17,12 +17,30 @@ async function cheer() {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: new URLSearchParams({
-      'entry.1296978131': selectedRacer['id']
+      'entry.1296978131': selectedRacer['id'],
+      'entry.227259800': 'c'
     }),
     mode: 'no-cors'
   })
 
   console.log('cheered for boshi');
+}
+
+
+async function pray() {
+    await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSfOB6ylM09IVZQN4kjlYKhadUUpqdBboEDd49Q_ojSMh0LIqA/formResponse', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+        'entry.1296978131': selectedRacer['id'],
+        'entry.227259800': 'p'
+        }),
+        mode: 'no-cors'
+    })
+
+    console.log('prayed for boshi');
 }
 
 
@@ -105,6 +123,9 @@ function getBestRaceStats() {
     async function init() {
         let submitCommentBtn = document.getElementById('cheer-btn');
         submitCommentBtn.addEventListener("click", cheer);
+
+        let prayBtn = document.getElementById('pray-btn');
+        prayBtn.addEventListener('click', pray);
 
         cheercontainer = document.getElementById('cheerContainer');
         cheerName = document.getElementById('youAreCheeringFor');
