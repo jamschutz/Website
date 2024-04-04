@@ -11,20 +11,24 @@ var prayerButton;
 
 
 
-async function cheer() {    
-  await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSfOB6ylM09IVZQN4kjlYKhadUUpqdBboEDd49Q_ojSMh0LIqA/formResponse', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      'entry.1296978131': selectedRacer['id'],
-      'entry.227259800': 'c'
-    }),
-    mode: 'no-cors'
-  })
+async function cheer() {
+    if(selectedRacer['type'] === 'focuser') {
+        hideCheerButton();
+    }
 
-  console.log('cheered for boshi');
+    await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSfOB6ylM09IVZQN4kjlYKhadUUpqdBboEDd49Q_ojSMh0LIqA/formResponse', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+        'entry.1296978131': selectedRacer['id'],
+        'entry.227259800': 'c'
+        }),
+        mode: 'no-cors'
+    })
+
+    console.log('cheered for boshi');
 }
 
 
@@ -92,7 +96,7 @@ function onRacerSelection(event) {
         attributes[attribute].value = racerStat;
     });
 
-    cheerName.innerText = selectedRacer['name'];
+    cheerName.innerText = `${selectedRacer['name']} (${selectedRacer['type']})`;
     cheercontainer.style.display = 'block';
 
     prayerButton.style.display = selectedRacer['type'] === 'religious'? 'block': 'none';
@@ -143,6 +147,7 @@ function getBestRaceStats() {
 
         currentState = await getState();
         upgrades = await getUpgrades();
+        initFocuserBtnController();
         loadRacers();
     }
 })(window, document, undefined);
