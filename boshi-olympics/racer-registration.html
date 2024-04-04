@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="olympics.css">
     
     <script src="code/uuidGenerator.js"></script>
+    <script src="code/racerTypeSelections.js"></script>
     <script src="code/racer-registration.js"></script>
 
 </head>
@@ -49,32 +50,32 @@
             <div id="Blog-commentsSectionContainer">
                 <div class="Blog-commentNameInput" style="display: block;">
                     <div class="Blog-commentNameInputLabel" style="text-align: left;">select your racer type:</div>
-                    <select name="racerDropdown" id="racerDropdown">
+                    <select name="racerTypeDropdown" id="racerTypeDropdown">
                         <option disabled selected value="">--select your racer type--</option>
                         <option value="religious">religious</option>
                         <option value="crowdPleaser">crowd pleaser</option>
-                        <option value="loner">loner</option>
+                        <!-- <option value="loner">loner</option> -->
                         <option value="speedster">speedster</option>
                         <option value="focuser">focuser</option>
                         <option value="pacer">pacer</option>
                     </select>
                 </div>
 
-                <div>
-                    you chose <span class="neonTextLabel" id="racerTypeDescription">charger</span>.
-                    <div id="racerTypeDescription">
-                        chargers are GOOD
-                    </div>
-
-                </div>
-
                 <div id="racerInfoContainer" style="display: none;">
+                    <div>
+                        you chose <span class="neonTextLabel" id="racerTypeLabel">charger</span>.
+                        <div id="racerTypeDescription">
+                            chargers are GOOD
+                        </div>
+    
+                    </div>
+                    <hr>
+
                     <div class="Blog-commentNameInput">
                         <div class="Blog-commentNameInputLabel">name:</div>
                         <input id="name" style="width: 200px;" type="text" placeholder="racer's name">
                     </div>
                     
-                    <hr>
                     <div class="racerPointsAvailable">
                         <div class="racerPointsText">
                             Points Available: <span id="racerPoints">25</span>

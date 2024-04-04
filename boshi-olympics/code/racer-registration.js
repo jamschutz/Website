@@ -1,5 +1,6 @@
 const nameEntryId = 'entry.674049401';
 const speedEntryId = 'entry.1074850540';
+const startingPointsAvailable = 25;
 
 var pointsAvailable;
 var attributes = {}
@@ -44,7 +45,16 @@ function incrementAttribute(attribute) {
         return;
 
     let attributeElement = attributes[attribute];
-    attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+    if(attribute === 'speed' && selectedRacerType === 'speedster') {
+        attributeElement.value = parseInt(attributeElement.value) + 2;
+    }
+    else if(attribute === 'speed' && selectedRacerType === 'pacer') {
+        attributeElement.value = parseInt(attributeElement.value) + 2;
+    }
+    else {
+        attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+    }
+    
 
     points--;
     pointsAvailable.innerText = points;
@@ -55,11 +65,30 @@ function decrementAttribute(attribute) {
     let attributeElement = document.getElementById(attribute);
 	let minimumValue = attribute == 'determination'? 0 : 1;
     if(attributeElement.value > minimumValue) {
+        
+        if(attribute === 'speed' && selectedRacerType === 'speedster') {
+            attributeElement.value = parseInt(attributeElement.value) - 2;
+        }
+        else if(attribute === 'speed' && selectedRacerType === 'pacer') {
+            attributeElement.value = parseInt(attributeElement.value) - 2;
+        }
+        else {
+            attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+        }
         attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
 
         let points = parseInt(pointsAvailable.innerText) + 1;
         pointsAvailable.innerText = points;
     }
+}
+
+
+function resetAttributes() {
+    pointsAvailable.innerText = startingPointsAvailable;
+    ['speed', 'stamina', 'determination'].forEach(attribute => {
+        let attributeElement = attributes[attribute];
+        attributeElement.value = attribute === 'determination'? 0: 1;
+    });
 }
 
 
@@ -84,5 +113,10 @@ function decrementAttribute(attribute) {
 			});
         });
         pointsAvailable = document.getElementById('racerPoints');
+        pointsAvailable.innerText = startingPointsAvailable;
+
+        let dropdown = document.getElementById('racerTypeDropdown');
+        dropdown.addEventListener('change', resetAttributes);
+        racerTypeInit();
     }
 })(window, document, undefined);
