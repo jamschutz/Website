@@ -8,7 +8,7 @@ function getPacerCheerPower() {
     // first cheer is fine
     if(lastCheerTime == undefined) {
         lastCheerTime = Date.now();
-        return;
+        return 1;
     }
 
     // interval should be half of previous interval
