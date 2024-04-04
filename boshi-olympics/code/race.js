@@ -7,6 +7,7 @@ var upgrades;
 var cheerContainer;
 var cheerName;
 var prayerButton;
+var userId;
 
 
 
@@ -23,7 +24,8 @@ async function cheer() {
         },
         body: new URLSearchParams({
         'entry.1296978131': selectedRacer['id'],
-        'entry.227259800': 'c'
+        'entry.227259800': 'c',
+        'entry.649948463': userId
         }),
         mode: 'no-cors'
     })
@@ -129,6 +131,9 @@ function getBestRaceStats() {
     window.onload = init;
   
     async function init() {
+        // generate unique id for each cheerer
+        userId = uuidv4();
+
         let submitCommentBtn = document.getElementById('cheer-btn');
         submitCommentBtn.addEventListener("click", cheer);
 

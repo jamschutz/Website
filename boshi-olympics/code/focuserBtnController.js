@@ -7,7 +7,6 @@ function randomRange(min, max) { // min and max included
   }
 
 function hideCheerButton() {
-    console.log('hiding cheer btn');
     cheerButton.style.display = 'none';
     if(lastButtonShowTime != undefined) {
         let timeBetweenBtnPresses = Date.now() - lastButtonShowTime;
@@ -19,7 +18,6 @@ function hideCheerButton() {
 
 
 function showCheerButton() {
-    console.log('showing cheer btn');
     lastButtonShowTime = Date.now();
 
     cheerButton.style.marginLeft = `${randomRange(0, 60)}%`;
