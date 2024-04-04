@@ -24,7 +24,7 @@ async function cheer() {
         },
         body: new URLSearchParams({
         'entry.1296978131': selectedRacer['id'],
-        'entry.227259800': 'c',
+        'entry.227259800': 'c1',
         'entry.649948463': userId
         }),
         mode: 'no-cors'
