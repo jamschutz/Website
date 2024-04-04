@@ -83,8 +83,6 @@ async function loadRacers() {
         option.innerHTML = racer['name'];
         dropdown.appendChild(option);
     });
-
-    console.log(racers);
 }
 
 

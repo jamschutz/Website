@@ -10,7 +10,7 @@ function hideCheerButton() {
     cheerButton.style.display = 'none';
     if(lastButtonShowTime != undefined) {
         let timeBetweenBtnPresses = Date.now() - lastButtonShowTime;
-        hideButtonIntervalMilliseconds += timeBetweenBtnPresses * 0.25;
+        hideButtonIntervalMilliseconds += timeBetweenBtnPresses * 0.1;
     }
 
     setTimeout(showCheerButton, hideButtonIntervalMilliseconds);
