@@ -66,7 +66,6 @@ function decrementAttribute(attribute) {
     let attributeElement = document.getElementById(attribute);
 	let minimumValue = attribute == 'determination'? 0 : 1;
     if(attributeElement.value > minimumValue) {
-        
         if(attribute === 'speed' && selectedRacerType === 'speedster') {
             attributeElement.value = parseInt(attributeElement.value) - 2;
         }

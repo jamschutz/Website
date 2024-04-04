@@ -66,7 +66,8 @@ async function loadRacers() {
             'speed': racer[2],
             'stamina': racer[3],
             'determination': racer[4],
-            'id': racer[5]
+            'id': racer[5],
+            'type': racer[6]
         });
     }
 
@@ -140,7 +141,15 @@ function incrementAttribute(attribute) {
         return;
 
     let attributeElement = attributes[attribute];
-    attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+    if(attribute === 'speed' && selectedRacer['type'] === 'speedster') {
+        attributeElement.value = parseInt(attributeElement.value) + 2;
+    }
+    else if(attribute === 'speed' && selectedRacer['type'] === 'pacer') {
+        attributeElement.value = parseInt(attributeElement.value) + 2;
+    }
+    else {
+        attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+    }
 
     points--;
     pointsAvailable.innerText = points;
@@ -150,7 +159,15 @@ function decrementAttribute(attribute) {
 	console.log('decrementing ' + attribute);
     let attributeElement = document.getElementById(attribute);
     if(attributeElement.value > minValues[attribute]) {
-        attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
+        if(attribute === 'speed' && selectedRacer['type'] === 'speedster') {
+            attributeElement.value = parseInt(attributeElement.value) - 2;
+        }
+        else if(attribute === 'speed' && selectedRacer['type'] === 'pacer') {
+            attributeElement.value = parseInt(attributeElement.value) - 2;
+        }
+        else {
+            attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
+        }
 
         let points = parseInt(pointsAvailable.innerText) + 1;
         pointsAvailable.innerText = points;
