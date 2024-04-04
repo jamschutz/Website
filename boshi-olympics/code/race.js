@@ -13,8 +13,19 @@ var userId;
 
 
 async function cheer() {
-    if(selectedRacer['type'] === 'focuser') {
+    // focuser
+    if(selectedRacer['type'][0] === 'f') {
         hideCheerButton();
+    }
+    // speedster
+    let cheerPower = 1;
+    if(selectedRacer['type'][0] === 's') {
+        cheerPower = getSpeedsterCheerPower();
+        console.log('cheer power: ' + cheerPower);
+    }
+    // pacer
+    if(selectedRacer['type'][0] === 'p') {
+        cheerPower = getPacerCheerPower();
     }
 
     await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSfOB6ylM09IVZQN4kjlYKhadUUpqdBboEDd49Q_ojSMh0LIqA/formResponse', {
@@ -24,7 +35,7 @@ async function cheer() {
         },
         body: new URLSearchParams({
         'entry.1296978131': selectedRacer['id'],
-        'entry.227259800': 'c1',
+        'entry.227259800': `c${cheerPower}`,
         'entry.649948463': userId
         }),
         mode: 'no-cors'
@@ -151,6 +162,8 @@ function getBestRaceStats() {
         currentState = await getState();
         upgrades = await getUpgrades();
         initFocuserBtnController();
+        initSpeedster();
+        initPacer();
         loadRacers();
     }
 })(window, document, undefined);

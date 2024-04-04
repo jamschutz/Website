@@ -21,6 +21,8 @@
     
     <script src="code/uuidGenerator.js"></script>
     <script src="code/googleFetcher.js"></script>
+    <script src="code/speedsterController.js"></script>
+    <script src="code/pacerController.js"></script>
     <script src="code/focuserBtnController.js"></script>
     <script src="code/race.js"></script>
     
@@ -86,10 +88,18 @@
                             </div>
                         </div>
 
+                        <!-- <div id="speedsterBarContainer" style="width: 80%; height: 20px; border: 1px solid var(--link-purple); margin-left: 10%; margin-top: 50px; margin-bottom: -20px;">
+                            <div id="speedstarBar" style="width:50%;background: var(--background-pink);height:20px;">
+                            </div>
+                        </div> -->
+
                         <div id="Blog-commentsSectionContainer">
                             <div class="Blog-commentInputField">
                                 <button style="margin-left: 125px; margin-top: 40px; width: 120px; height: 40px;" id="cheer-btn">cheer!</button>
                             </div>
+                        </div>
+                        <div id="paceMsg" style="display: none; color: var(--medium-gray); margin-left: 125px; margin-top: 15px;">
+                            cheer power: <span id="paceMsgValue"></span>
                         </div>
 
                         <div id="Blog-commentsSectionContainer">
