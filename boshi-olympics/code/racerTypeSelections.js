@@ -19,7 +19,7 @@ function onRacerTypeSelection(event) {
     selectedRacerType = event.target.value;
     let description = racerTypeDescriptions[selectedRacerType];
 
-    racerTypeLabelElement.innerText = selectedRacerType;
+    racerTypeLabelElement.innerText = selectedRacerType === 'crowdPleaser'? 'crowd pleaser' : selectedRacerType;
     descriptionElement.innerText = description;
 
     racerInfoContainer.style.display = 'block';
@@ -27,7 +27,6 @@ function onRacerTypeSelection(event) {
 
 
 function racerTypeInit() {
-    console.log('hi');
     let dropdown = document.getElementById('racerTypeDropdown');
     dropdown.addEventListener('change', onRacerTypeSelection);
 
