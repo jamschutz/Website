@@ -27,7 +27,8 @@ async function submitRacer() {
         'entry.1074850540': speed,
 		'entry.1545299839': stamina,
 		'entry.526267970':  determination,
-        'entry.422582051': id
+        'entry.422582051': id,
+        'entry.1519570609': selectedRacerType
       }),
       mode: 'no-cors'
     })

@@ -6,6 +6,7 @@ var upgrades;
 
 var cheerContainer;
 var cheerName;
+var prayerButton;
 
 
 
@@ -63,7 +64,8 @@ async function loadRacers() {
             'speed': racer[2],
             'stamina': racer[3],
             'determination': racer[4],
-            'id': racer[5]
+            'id': racer[5],
+            'type': racer[6]
         });
     }
 
@@ -92,6 +94,8 @@ function onRacerSelection(event) {
 
     cheerName.innerText = selectedRacer['name'];
     cheercontainer.style.display = 'block';
+
+    prayerButton.style.display = selectedRacer['type'] === 'religious'? 'block': 'none';
 }
 
 
@@ -124,8 +128,8 @@ function getBestRaceStats() {
         let submitCommentBtn = document.getElementById('cheer-btn');
         submitCommentBtn.addEventListener("click", cheer);
 
-        let prayBtn = document.getElementById('pray-btn');
-        prayBtn.addEventListener('click', pray);
+        prayerButton = document.getElementById('pray-btn');
+        prayerButton.addEventListener('click', pray);
 
         cheercontainer = document.getElementById('cheerContainer');
         cheerName = document.getElementById('youAreCheeringFor');
