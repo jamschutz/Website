@@ -7,7 +7,16 @@ var upgrades;
 var cheerContainer;
 var cheerName;
 var prayerButton;
+var boshiBarButton;
+var steroidButton;
+var idolButton;
 var userId;
+
+const allAttributes = [
+    'speed',
+    'stamina',
+    'determination'
+]
 
 
 
@@ -62,6 +71,23 @@ async function pray() {
 }
 
 
+async function useItem(item) {
+    await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSfOB6ylM09IVZQN4kjlYKhadUUpqdBboEDd49Q_ojSMh0LIqA/formResponse', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+        'entry.1296978131': selectedRacer['id'],
+        'entry.227259800': item
+        }),
+        mode: 'no-cors'
+    })
+
+    console.log('used ' + item);
+}
+
+
 
 async function loadRacers() {   
     let uri = getSheetsUrl('racers');
@@ -102,7 +128,8 @@ function onRacerSelection(event) {
     selectedRacer = getRacer(selectedRacerName);
 
     let stats = getBestRaceStats();
-    ['speed', 'stamina', 'determination'].forEach(attribute => {
+    console.log(stats)
+    allAttributes.forEach(attribute => {
         let racerStat = parseInt(stats[attribute]);
         attributes[attribute].value = racerStat;
     });
@@ -111,6 +138,18 @@ function onRacerSelection(event) {
     cheercontainer.style.display = 'block';
 
     prayerButton.style.display = selectedRacer['type'] === 'religious'? 'block': 'none';
+
+    let boshiBars = stats['boshiBars'] == undefined || stats['boshiBars'] == ''? 0 : stats['boshiBars'];
+    let steroids = stats['steroids'] == undefined || stats['steroids'] == ''? 0 : stats['steroids'];
+    let idols = stats['idols'] == undefined || stats['idols'] == ''? 0 : stats['idols'];
+
+    boshiBarButton.innerText = `eat boshi bar (${boshiBars})`;
+    steroidButton.innerText = `take steroid (${steroids})`;
+    idolButton.innerText = `pray to boshi idol (${idols})`;
+
+    boshiBarButton.style.display = boshiBars > 0? 'block' : 'none';
+    steroidButton.style.display = steroids > 0? 'block' : 'none';
+    idolButton.style.display = idols > 0? 'block' : 'none';
 }
 
 
@@ -158,6 +197,13 @@ function getBestRaceStats() {
         ['speed', 'stamina', 'determination'].forEach(attribute => {
             attributes[attribute] = document.getElementById(attribute);
         });
+
+        boshiBarButton = document.getElementById('boshibar-btn');
+        steroidButton = document.getElementById('steroid-btn');
+        idolButton = document.getElementById('idol-btn');
+        boshiBarButton.addEventListener('click', () => useItem('boshiBar'));
+        steroidButton.addEventListener('click', () => useItem('steroid'));
+        idolButton.addEventListener('click', () => useItem('idol'));
 
         currentState = await getState();
         upgrades = await getUpgrades();
