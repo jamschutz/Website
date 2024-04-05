@@ -1,0 +1,96 @@
+
+
+
+
+
+___speed + 1 (7)____
+do jumping jacks in the rain
+write a letter to home
+swim laps in the shallow end
+ride your bike to the grocery store
+read a good book
+run up 100 flights of stairs
+beat Steve in a boxing match
+
+
+
+
+___stamina + 1 (7)___
+do handstands with grandpa
+make the perfect cup of coffee
+hold your breath for a full minute
+read an okay book
+bake cookies for your neighbour
+bike dead man\'s pass
+lift a car
+
+
+
+
+
+___determination + 1 (7)___
+climb the great beanstalk tower
+surf during tsunami season
+sing happy birthday to grandpa
+become a weatherman
+get quarters from the bank for laundry
+ski down mount peril
+take your gloves off in the snow
+
+
+
+
+
+___speed + 3 (3)___
+start a bookclub
+go for a walk
+get carrots from the farmer\'s market
+
+
+
+
+
+___speed + 5 (3)___
+try the expensive tiramisu
+say thank you to the mail man
+do 500 push ups
+
+
+
+
+
+___stamina + 5 (2)___
+knit a sweater
+make a sand castle
+
+
+
+
+
+___determination + 5 (2)___
+go skydiving
+write a play
+
+
+
+
+
+___speed * 2 (2)___
+learn to play the piano
+learn latin
+
+
+
+
+
+___stamina * 2 (2)___
+learn to tie your shoes
+learn calculus 2
+
+
+
+
+
+___determination * 2 (2)___
+file your taxes
+grow a tomato

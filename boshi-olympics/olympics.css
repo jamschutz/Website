@@ -346,6 +346,15 @@ header a:hover {
     border-color: var(--background-blue);
     border-radius: 5px;
 }
+.item button {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
 .Blog-commentInputField button {
     font-family: 'MainFont-regular';
     font-weight: 800;
@@ -442,4 +451,19 @@ hr {
     color: var(--medium-gray);
     font-weight: 500;
     margin-top: 10px;
+}
+
+.itemDescription {
+    color: var(--medium-gray);
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.itemsShopHeader {
+    color: var(--link-purple);
+    font-weight: 800;
+    text-shadow: var(--header-green) 1px 1px 2px;
+    margin-left: 126px;
+    padding: 10px;
 }
