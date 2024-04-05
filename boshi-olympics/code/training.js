@@ -18,6 +18,7 @@ var upgrades;
 
 var upgradeContainer;
 var alreadyTrainedMsg;
+var youAreTrainingFor;
 
 const defaultPointsAvailable = 15;
 
@@ -79,15 +80,12 @@ async function loadRacers() {
         option.innerHTML = racer['name'];
         dropdown.appendChild(option);
     });
-
-    console.log(racers);
 }
 
 
 function onRacerSelection(event) {
     let selectedRacerName = event.target.value;
     selectedRacer = getRacer(selectedRacerName);
-    console.log(selectedRacer);
 
     if(alreadyTrained(selectedRacer)) {
         upgradeContainer.style.display = 'none';
@@ -100,8 +98,9 @@ function onRacerSelection(event) {
     }
 
     pointsAvailable.innerText = defaultPointsAvailable;
+    let racerType = selectedRacer['type'] === 'crowdPleaser'? 'crowd pleaser' : selectedRacer['type'];
+    youAreTrainingFor.innerText = `${selectedRacer['name']} (${racerType})`;
     let stats = getBestRaceStats();
-    console.log(stats);
     ['speed', 'stamina', 'determination'].forEach(attribute => {
         let racerStat = parseInt(stats[attribute]);
         attributes[attribute].value = racerStat;
@@ -213,6 +212,7 @@ function alreadyTrained(racer) {
 
         upgradeContainer = document.getElementById('trainingPoints')
         alreadyTrainedMsg = document.getElementById('alreadyTrainedMsg');
+        youAreTrainingFor = document.getElementById('youAreTrainingFor');
 
         currentState = await getState();
         upgrades = await getUpgrades();
