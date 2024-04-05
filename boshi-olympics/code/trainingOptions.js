@@ -132,22 +132,29 @@ function getRandomRange(min, max) { // min and max included
 
 
 function getRandomTasks(numTasks) {
-    let tasks = [];
-    let taskTypesAdded = {};
-    for(let i = 0; i < numTasks; i++) {
-        let taskCategory = '';
-        let taskType = {};
-        do {
-            taskType = trainingOptions[getRandomRange(0, trainingOptions.length)];    
-        } while(taskCategory in taskTypesAdded);
+    // let tasks = [];
+    // let taskTypesAdded = {};
+    // for(let i = 0; i < numTasks; i++) {
+    //     let taskCategory = '';
+    //     let taskType = {};
+    //     do {
+    //         taskType = trainingOptions[getRandomRange(0, trainingOptions.length)];    
+    //     } while(taskCategory in taskTypesAdded);
+    //     console.log('hi...')
+    //     console.log(taskType);
 
-        let task = taskType['tasks'][getRandomRange(0, taskType['tasks'].length)];
-        tasks.push({
-            'attribute': taskType['attribute'],
-            'effect': taskType['effect'],
-            'cost': taskType['cost'],
-            'description': task
-        });
+    //     let task = taskType['tasks'][getRandomRange(0, taskType['tasks'].length)];
+    //     tasks.push({
+    //         'attribute': taskType['attribute'],
+    //         'effect': taskType['effect'],
+    //         'cost': taskType['cost'],
+    //         'description': task
+    //     });
+    // }
+
+    let tasks = [];
+    while(tasks.length < numTasks) {
+        tasks.push(trainingOptions[getRandomRange(0, trainingOptions.length - 1)]);
     }
 
     return tasks;

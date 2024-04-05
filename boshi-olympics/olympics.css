@@ -467,3 +467,36 @@ hr {
     margin-left: 126px;
     padding: 10px;
 }
+
+.trainingMonthContainer {
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.trainingOptions {
+    margin-top: 15px;
+}
+
+.trainingOptions button {
+    height: 25px;
+    font-weight: 550;
+    font-size: 16px;
+    /* background-color : var(--background-blue); */
+    background-color: var(--background-pink);
+    /* color: #5350c9; */
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
+
+.trainingOptDescription {
+    color: var(--medium-gray);
+}
+.trainingHistoryMonth {
+    font-weight: 600;
+}
+
+.trainingHistoryEntry {
+    color: var(--medium-gray);
+    margin-bottom: 7px;
+}

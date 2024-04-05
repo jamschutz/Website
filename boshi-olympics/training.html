@@ -22,7 +22,10 @@
     <script src="code/uuidGenerator.js"></script>
     <script src="code/googleFetcher.js"></script>
     <script src="code/showHidePage.js"></script>
-    <script src="code/training.js"></script>
+    
+    <script src="code/trainingOptions.js"></script>
+    <script src="code/trainingV2.js"></script>
+    <!-- <script src="code/training.js"></script> -->
 
 </head>
 
@@ -69,13 +72,75 @@
                         <div style="margin-bottom: 20px;">
                             you are training: <span class="neonTextLabel" id="youAreTrainingFor">boshi</span>
                         </div>
-                        <div class="racerPointsAvailable">
-                            <div class="racerPointsText">
-                                Points Available: <span id="racerPoints">25</span>
-                            </div>                    
-                        </div>
         
                         <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">speed:</div>
+                            <div class="racer-stats">
+                                <input id="speed" readonly type="number" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">stamina:</div>
+                            <div class="racer-stats">
+                                <input id="stamina" readonly type="number" value="1">
+                            </div>
+                        </div>
+                        <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">determination:</div>
+                            <div class="racer-stats">
+                                <input id="determination" readonly type="number" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">boshi bars:</div>
+                            <div class="racer-stats">
+                                <input id="boshiBars" readonly type="number" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">steroid injections:</div>
+                            <div class="racer-stats">
+                                <input id="steroids" readonly type="number" value="0" placeholder="0">
+                            </div>
+                        </div>
+                        <div class="Blog-commentNameInput">
+                            <div class="Blog-commentNameInputLabel">boshi god idols:</div>
+                            <div class="racer-stats">
+                                <input id="idols" readonly type="number" value="0" placeholder="0">
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div style="margin-bottom: 20px; margin-top: 20px;">
+                            next race date: <span class="neonTextLabel">april</span>
+                        </div>
+
+                        <div id="trainingHistory" style="margin-bottom: 50px;">
+                            <!-- <div class="trainingHistoryEntry">
+                                <span class="trainingHistoryMonth">april</span>: read a good book. (+5 stamina)
+                            </div>
+                            <div class="trainingHistoryEntry">
+                                <span class="trainingHistoryMonth">may</span>: knit a sweater. (+3 determination)
+                            </div> -->
+
+                        </div>
+
+                        <div class="trainingMonthContainer">
+                            what do you do in <span id="trainingMonth">may</span>?
+                            <div class="trainingOptions">
+                                <button id="trainingOpt1">take a walk on the beach</button>
+                                <div id="trainingDescription1" class="trainingOptDescription">+5 stamina (3 months)</div>
+                                <br/>
+                                <button id="trainingOpt2">call grandpa (speed + 1)</button>
+                                <div id="trainingDescription2" class="trainingOptDescription">+5 stamina (3 months)</div>
+                                <br/>
+                                <button id="trainingOpt3">climb the great tangle tower (speed + 1)</button>
+                                <div id="trainingDescription3" class="trainingOptDescription">+5 stamina (3 months)</div>
+                                <br/>
+                            </div>
+                        </div>
+        
+                        <!-- <div class="Blog-commentNameInput">
                             <div class="Blog-commentNameInputLabel">speed:</div>
                             <div class="racer-stats">
                                 <button id="speedMinus">-</button>
@@ -131,7 +196,7 @@
                                 <input id="idols" readonly type="number" value="0">
                                 <button id="idolsPlus">+</button>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="items">
                             <div class="itemsShopHeader">
