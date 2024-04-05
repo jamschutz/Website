@@ -50,6 +50,9 @@ async function submitTrainingData() {
     let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
     let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
     let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
+    let boshiBars = attributes['boshiBars'].value == ''? 0: attributes['boshiBars'].value;
+    let idols = attributes['idols'].value == ''? 0: attributes['idols'].value;
+    let steroids = attributes['steroids'].value == ''? 0: attributes['steroids'].value;
     
     await fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSczIvqsf50Dp833qd6jsSo2quE9F7QLiC-nET1HvdV7dD_1oQ/formResponse', {
       method: 'POST',
@@ -62,10 +65,10 @@ async function submitTrainingData() {
 		'entry.901390338': stamina,
 		'entry.1030287421':  determination,
         'entry.994883380': selectedRacer['id'],
-        'entry.393707600': currentState['id']
-        // 'entry.939624832': boshiBars
-        // 'entry.511393298': idols
-        // 'entry.1315473925': steroids
+        'entry.393707600': currentState['id'],
+        'entry.939624832': boshiBars,
+        'entry.511393298': idols,
+        'entry.1315473925': steroids
       }),
       mode: 'no-cors'
     })
