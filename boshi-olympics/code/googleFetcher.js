@@ -32,11 +32,11 @@ async function getUpgrades() {
             'speed': data[i][2],
             'stamina': data[i][3],
             'determination': data[i][4],
-            'boshiBars': data[i][5],
+            'boshiBars': data[i][5] == undefined? 0 : data[i][5],
             'racerId': data[i][6],
             'stateSubmitted': data[i][7],
-            'steroids': data[i][8],
-            'idols': data[i][9]
+            'steroids': data[i][8] == undefined? 0: data[i][8],
+            'idols': data[i][9] == undefined? 0: data[i][9]
         });
     }
 

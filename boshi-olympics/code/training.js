@@ -1,16 +1,39 @@
 var racers = [];
 var pointsAvailable;
 var attributes = {}
+const allAttributes = [
+    'speed',
+    'stamina',
+    'determination',
+    'boshiBars',
+    'steroids',
+    'idols'
+]
 var attributeIncrements = {
 	'speed': 1,
 	'stamina': 2,
-	'determination': 2
+	'determination': 2,
+    'boshiBars': 1,
+    'steroids': 1,
+    'idols': 1
+}
+
+const itemCosts = {
+    'speed': 1,
+	'stamina': 1,
+	'determination': 12,
+    'boshiBars': 10,
+    'steroids': 10,
+    'idols': 10
 }
 
 var minValues = {
     'speed': 0,
     'stamina': 0,
-    'determination': 0
+    'determination': 0,
+    'boshiBars': 0,
+    'steroids': 0,
+    'idols': 0
 }
 var selectedRacer;
 var currentState;
@@ -40,7 +63,9 @@ async function submitTrainingData() {
 		'entry.1030287421':  determination,
         'entry.994883380': selectedRacer['id'],
         'entry.393707600': currentState['id']
-        // 'entry.939624832': items
+        // 'entry.939624832': boshiBars
+        // 'entry.511393298': idols
+        // 'entry.1315473925': steroids
       }),
       mode: 'no-cors'
     })
@@ -68,7 +93,10 @@ async function loadRacers() {
             'stamina': racer[3],
             'determination': racer[4],
             'id': racer[5],
-            'type': racer[6]
+            'type': racer[6],
+            'boshiBars': 0,
+            'steroids': 0,
+            'idols': 0
         });
     }
 
@@ -101,7 +129,7 @@ function onRacerSelection(event) {
     let racerType = selectedRacer['type'] === 'crowdPleaser'? 'crowd pleaser' : selectedRacer['type'];
     youAreTrainingFor.innerText = `${selectedRacer['name']} (${racerType})`;
     let stats = getBestRaceStats();
-    ['speed', 'stamina', 'determination'].forEach(attribute => {
+    allAttributes.forEach(attribute => {
         let racerStat = parseInt(stats[attribute]);
         attributes[attribute].value = racerStat;
 
@@ -122,6 +150,7 @@ function getRacer(name) {
 
 
 function getBestRaceStats() {
+    console.log(upgrades)
     for(let i = upgrades.length - 1; i >= 0; i--) {
         if(upgrades[i]['racerId'] === selectedRacer['id'] && upgrades[i]['racerName'] === selectedRacer['name']) {
             return upgrades[i];
@@ -136,7 +165,7 @@ function getBestRaceStats() {
 function incrementAttribute(attribute) {
 	console.log('incrementing ' + attribute);
     let points = parseInt(pointsAvailable.innerText);
-    if(points <= 0)
+    if(points <= 0 || points - itemCosts[attribute] < 0)
         return;
 
     let attributeElement = attributes[attribute];
@@ -150,7 +179,7 @@ function incrementAttribute(attribute) {
         attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
     }
 
-    points--;
+    points -= itemCosts[attribute];
     pointsAvailable.innerText = points;
 
 }
@@ -168,7 +197,7 @@ function decrementAttribute(attribute) {
             attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
         }
 
-        let points = parseInt(pointsAvailable.innerText) + 1;
+        let points = parseInt(pointsAvailable.innerText) + itemCosts[attribute];
         pointsAvailable.innerText = points;
     }
 }
@@ -196,7 +225,7 @@ function alreadyTrained(racer) {
         let dropdown = document.getElementById('racerDropdown');
         dropdown.addEventListener('change', onRacerSelection);
 
-        ['speed', 'stamina', 'determination'].forEach(attribute => {
+        ['speed', 'stamina', 'determination', 'boshiBars', 'steroids', 'idols'].forEach(attribute => {
             attributes[attribute] = document.getElementById(attribute);
 			let plusBtn = document.getElementById(`${attribute}Plus`);
 			let minusBtn = document.getElementById(`${attribute}Minus`);
@@ -216,6 +245,7 @@ function alreadyTrained(racer) {
 
         currentState = await getState();
         upgrades = await getUpgrades();
+        console.log(upgrades)
         loadRacers();
         showHidePage('Training');
     }
