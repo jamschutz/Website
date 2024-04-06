@@ -474,7 +474,7 @@ hr {
 .boshiParts img {
     width: 200px;
     position: absolute;
-    left: 125px;
+    left: 20%;
     margin-top: -35px;
 }
 
