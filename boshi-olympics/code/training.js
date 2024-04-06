@@ -55,24 +55,30 @@ async function submitTrainingData() {
     let idols = attributes['idols'].value == ''? 0: attributes['idols'].value;
     let steroids = attributes['steroids'].value == ''? 0: attributes['steroids'].value;
     
-    await fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSczIvqsf50Dp833qd6jsSo2quE9F7QLiC-nET1HvdV7dD_1oQ/formResponse', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        'entry.1584351445': selectedRacer['name'],
-        'entry.1836487193': speed,
-		'entry.901390338': stamina,
-		'entry.1030287421':  determination,
-        'entry.994883380': selectedRacer['id'],
-        'entry.393707600': currentState['id'],
-        'entry.939624832': boshiBars,
-        'entry.511393298': idols,
-        'entry.1315473925': steroids
-      }),
-      mode: 'no-cors'
-    })
+    // submit for each upgrade available (unity will just take the most recent, they're not additive)
+    let numPreviousUpgrades = getNumRacerUpgrades(selectedRacer['id']);
+    let numAllowedUpgrades = currentState['numTrainingSessions'];
+    let availableUpgrades = numAllowedUpgrades - numPreviousUpgrades;
+    for(let i = 0; i < availableUpgrades; i++) {
+        await fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSczIvqsf50Dp833qd6jsSo2quE9F7QLiC-nET1HvdV7dD_1oQ/formResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                'entry.1584351445': selectedRacer['name'],
+                'entry.1836487193': speed,
+                'entry.901390338': stamina,
+                'entry.1030287421':  determination,
+                'entry.994883380': selectedRacer['id'],
+                'entry.393707600': currentState['id'],
+                'entry.939624832': boshiBars,
+                'entry.511393298': idols,
+                'entry.1315473925': steroids
+            }),
+            mode: 'no-cors'
+        })
+    }
     
     window.location.href ="/boshi-olympics/racer-submitted.html";
 }
@@ -108,7 +114,7 @@ async function loadRacers() {
     let dropdown = document.getElementById('racerDropdown');
     racers.forEach(racer => {
         let option = document.createElement('option');
-        option.value = racer['name'];
+        option.value = racer['id'];
         option.innerHTML = racer['name'];
         dropdown.appendChild(option);
     });
@@ -116,8 +122,8 @@ async function loadRacers() {
 
 
 function onRacerSelection(event) {
-    let selectedRacerName = event.target.value;
-    selectedRacer = getRacer(selectedRacerName);
+    let selectedRacerId = event.target.value;
+    selectedRacer = getRacer(selectedRacerId);
 
     let numUpgrades = getNumRacerUpgrades(selectedRacer['id']);
     if(numUpgrades >= currentState['numTrainingSessions']) {
@@ -143,13 +149,13 @@ function onRacerSelection(event) {
 }
 
 
-function getRacer(name) {
+function getRacer(id) {
     for(let i = 0; i < racers.length; i++) {
-        if(racers[i]['name'] === name)
+        if(racers[i]['id'] === id)
             return racers[i];
     }
 
-    console.error('unable to find racer with name: ' + name);
+    console.error('unable to find racer with id: ' + id);
     console.error('these are the racers i have: ' + racers);
 }
 
