@@ -18,7 +18,7 @@ function getPacerCheerPower() {
     let cheerPower = 1 - Math.abs((cheerInterval / 1000.0) - 1.0);
     paceMsg.style.display = 'block';
     cheerPowerDisplay.innerText = cheerPower;
-    return cheerPower;
+    return cheerPower * cheerPower;
 }
 
 

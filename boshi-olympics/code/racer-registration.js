@@ -1,6 +1,6 @@
 const nameEntryId = 'entry.674049401';
 const speedEntryId = 'entry.1074850540';
-const startingPointsAvailable = 25;
+const startingPointsAvailable = 10;
 
 var pointsAvailable;
 var attributes = {}

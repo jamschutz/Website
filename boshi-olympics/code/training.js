@@ -21,7 +21,7 @@ var attributeIncrements = {
 const itemCosts = {
     'speed': 1,
 	'stamina': 1,
-	'determination': 12,
+	'determination': 1,
     'boshiBars': 10,
     'steroids': 10,
     'idols': 10
