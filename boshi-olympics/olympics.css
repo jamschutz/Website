@@ -467,3 +467,24 @@ hr {
     margin-left: 126px;
     padding: 10px;
 }
+
+.boshiParts {
+    margin-bottom: 200px;
+}
+.boshiParts img {
+    width: 200px;
+    position: absolute;
+    left: 125px;
+    margin-top: -50px;
+}
+
+.boshiPartBtn {
+    position: absolute;
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
