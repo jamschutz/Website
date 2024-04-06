@@ -10,6 +10,25 @@ var attributeIncrements = {
 	'determination': 2
 }
 
+
+const boshiPartColors = [
+    'Green', 'Orange', 'Pink', 'White', 'Yellow'
+]
+const numBoshiHeads = 24;
+const bodyParts = [
+    'Head', 'Arms', 'Body', 'Legs'
+]
+var bodyPartElements = {}
+var bodyPartSelections = {
+    'Head': 0,
+    'Arms': 0,
+    'Body': 0,
+    'Legs': 0
+}
+
+
+
+
 async function submitRacer() {
     let name = document.getElementById('name').value;
     let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
@@ -82,6 +101,40 @@ function decrementAttribute(attribute) {
 }
 
 
+function incrementBodyPart(bodyPart) {
+    let current = bodyPartSelections[bodyPart];
+    if(bodyPart === 'Head') {
+        current = (current + 1) % numBoshiHeads;
+        bodyPartElements[bodyPart].src = `assets/BoshiPartsSprites_heads/BoshiHead${current + 1}.png`;
+    }
+    else {
+        current = (current + 1) % boshiPartColors.length;
+        bodyPartElements[bodyPart].src = `assets/BoshiParts_Bodies/Boshi_${bodyPart}_${boshiPartColors[current]}.png`;
+    }
+
+    bodyPartSelections[bodyPart] = current;
+}
+
+
+function decrementBodyPart(bodyPart) {
+    let current = bodyPartSelections[bodyPart];
+    if(bodyPart === 'Head') {
+        current--;
+        if(current < 0)
+            current = numBoshiHeads - 1;
+        bodyPartElements[bodyPart].src = `assets/BoshiPartsSprites_heads/BoshiHead${current + 1}.png`;
+    }
+    else {
+        current--;
+        if(current < 0)
+            current = boshiPartColors.length - 1;
+        bodyPartElements[bodyPart].src = `assets/BoshiParts_Bodies/Boshi_${bodyPart}_${boshiPartColors[current]}.png`;
+    }
+
+    bodyPartSelections[bodyPart] = current;
+}
+
+
 function resetAttributes() {
     pointsAvailable.innerText = startingPointsAvailable;
     ['speed', 'stamina', 'determination'].forEach(attribute => {
@@ -113,6 +166,20 @@ function resetAttributes() {
         });
         pointsAvailable = document.getElementById('racerPoints');
         pointsAvailable.innerText = startingPointsAvailable;
+
+
+        bodyParts.forEach(bodyPart => {
+            bodyPartElements[bodyPart] = document.getElementById(`boshiPart-${bodyPart}`);
+            let plusBtn = document.getElementById(`boshi${bodyPart}Plus`);
+            let minusBtn = document.getElementById(`boshi${bodyPart}Minus`);
+
+            plusBtn.addEventListener('click', () => {
+                incrementBodyPart(bodyPart);
+            });
+            minusBtn.addEventListener('click', () => {
+                decrementBodyPart(bodyPart);
+            });
+        })
 
         let dropdown = document.getElementById('racerTypeDropdown');
         dropdown.addEventListener('change', resetAttributes);
