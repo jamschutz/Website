@@ -116,7 +116,7 @@ async function loadRacers() {
     let dropdown = document.getElementById('racerDropdown');
     racers.forEach(racer => {
         let option = document.createElement('option');
-        option.value = racer['name'];
+        option.value = racer['id'];
         option.innerHTML = racer['name'];
         dropdown.appendChild(option);
     });
@@ -155,7 +155,7 @@ function onRacerSelection(event) {
 
 function getRacer(name) {
     for(let i = 0; i < racers.length; i++) {
-        if(racers[i]['name'] === name)
+        if(racers[i]['id'] === name)
             return racers[i];
     }
 
