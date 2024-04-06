@@ -18,6 +18,9 @@ const allAttributes = [
     'determination'
 ]
 
+var bodyPartElements = {}
+var bodyPartsLookup = {}
+
 
 
 
@@ -110,6 +113,8 @@ async function loadRacers() {
             'id': racer[5],
             'type': racer[6]
         });
+
+        bodyPartsLookup[racer[5]] = racer[7];
     }
 
 
@@ -147,9 +152,30 @@ function onRacerSelection(event) {
     steroidButton.innerText = `take steroid (${steroids})`;
     idolButton.innerText = `pray to boshi idol (${idols})`;
 
+    // appearance
+    let bodyPartPieces = bodyPartsLookup[selectedRacer['id']].split(',');
+    bodyPartElements['Head'].src = `assets/BoshiPartsSprites_heads/BoshiHead${parseInt(bodyPartPieces[0])}.png`;
+    bodyPartElements['Arms'].src = `assets/BoshiParts_Bodies/Boshi_Arms_${getColor(bodyPartPieces[1])}.png`;
+    bodyPartElements['Body'].src = `assets/BoshiParts_Bodies/Boshi_Body_${getColor(bodyPartPieces[2])}.png`;
+    bodyPartElements['Legs'].src = `assets/BoshiParts_Bodies/Boshi_Legs_${getColor(bodyPartPieces[3])}.png`;
+
     boshiBarButton.style.display = boshiBars > 0? 'block' : 'none';
     steroidButton.style.display = steroids > 0? 'block' : 'none';
     idolButton.style.display = idols > 0? 'block' : 'none';
+}
+
+
+function getColor(c) {
+    if(c === 'g')
+        return 'Green';
+    if(c === 'o')
+        return 'Orange';
+    if(c === 'p')
+        return 'Pink';
+    if(c === 'y')
+        return 'Yellow'
+
+    return 'White';
 }
 
 
@@ -204,6 +230,10 @@ function getBestRaceStats() {
         boshiBarButton.addEventListener('click', () => useItem('boshiBar'));
         steroidButton.addEventListener('click', () => useItem('steroid'));
         idolButton.addEventListener('click', () => useItem('idol'));
+
+        ['Head', 'Arms', 'Legs', 'Body'].forEach(bodyPart => {
+            bodyPartElements[bodyPart] = document.getElementById(`boshiPart-${bodyPart}`);
+        });
 
         currentState = await getState();
         upgrades = await getUpgrades();
