@@ -73,9 +73,8 @@ function decrementAttribute(attribute) {
             attributeElement.value = parseInt(attributeElement.value) - 2;
         }
         else {
-            attributeElement.value = parseInt(attributeElement.value) + attributeIncrements[attribute];
+            attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
         }
-        attributeElement.value = parseInt(attributeElement.value) - attributeIncrements[attribute];
 
         let points = parseInt(pointsAvailable.innerText) + 1;
         pointsAvailable.innerText = points;
