@@ -155,7 +155,6 @@ function getRacer(name) {
 
 
 function getBestRaceStats() {
-    console.log(upgrades)
     for(let i = upgrades.length - 1; i >= 0; i--) {
         if(upgrades[i]['racerId'] === selectedRacer['id'] && upgrades[i]['racerName'] === selectedRacer['name']) {
             return upgrades[i];
