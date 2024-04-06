@@ -43,7 +43,7 @@ var upgradeContainer;
 var alreadyTrainedMsg;
 var youAreTrainingFor;
 
-const defaultPointsAvailable = 15;
+const defaultPointsAvailable = 10;
 
 
 async function submitTrainingData() {
