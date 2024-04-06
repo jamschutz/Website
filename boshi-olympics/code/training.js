@@ -267,7 +267,6 @@ function alreadyTrained(racer) {
 
             racerUpgradeCountLookup[id]++;
         })
-        console.log(racerUpgradeCountLookup);
         loadRacers();
         showHidePage('Training');
     }
