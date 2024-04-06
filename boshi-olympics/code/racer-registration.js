@@ -14,6 +14,7 @@ var attributeIncrements = {
 const boshiPartColors = [
     'Green', 'Orange', 'Pink', 'White', 'Yellow'
 ]
+const boshiPartColorsShort = [ 'g', 'o', 'p', 'w', 'y'];
 const numBoshiHeads = 24;
 const bodyParts = [
     'Head', 'Arms', 'Body', 'Legs'
@@ -35,6 +36,7 @@ async function submitRacer() {
     let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
     let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
     let id = uuidv4();
+    let bodyPartStr = `${bodyPartSelections['Head'] + 1},${boshiPartColorsShort[bodyPartSelections['Arms']]},${boshiPartColorsShort[bodyPartSelections['Body']]},${boshiPartColorsShort[bodyPartSelections['Legs']]}`;
     
     await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSenDKu3U4DCLzprMmBJFPXinZLHQBXefLr1_2kZE5xpQ91tMQ/formResponse', {
       method: 'POST',
@@ -47,7 +49,8 @@ async function submitRacer() {
 		'entry.1545299839': stamina,
 		'entry.526267970':  determination,
         'entry.422582051': id,
-        'entry.1519570609': selectedRacerType
+        'entry.1519570609': selectedRacerType,
+        'entry.1768302599': bodyPartStr
       }),
       mode: 'no-cors'
     })
@@ -113,6 +116,8 @@ function incrementBodyPart(bodyPart) {
     }
 
     bodyPartSelections[bodyPart] = current;
+    let bodyPartStr = `${bodyPartSelections['Head'] + 1},${boshiPartColorsShort[bodyPartSelections['Arms']]},${boshiPartColorsShort[bodyPartSelections['Body']]},${boshiPartColorsShort[bodyPartSelections['Legs']]}`;
+    console.log(bodyPartStr);
 }
 
 
