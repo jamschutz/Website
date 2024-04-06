@@ -13,7 +13,7 @@ async function getState() {
     let currentState = allStates[allStates.length - 1];
     return {
         'name': currentState[1],
-        'nextChangeInSeconds': currentState[2],
+        'numTrainingSessions': currentState[2],
         'id': currentState[3]
     };
 }

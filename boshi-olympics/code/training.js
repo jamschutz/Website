@@ -38,6 +38,7 @@ var minValues = {
 var selectedRacer;
 var currentState;
 var upgrades;
+var racerUpgradeCountLookup = {}
 
 var upgradeContainer;
 var alreadyTrainedMsg;
@@ -118,7 +119,11 @@ function onRacerSelection(event) {
     let selectedRacerName = event.target.value;
     selectedRacer = getRacer(selectedRacerName);
 
-    if(alreadyTrained(selectedRacer)) {
+    let numUpgrades = getNumRacerUpgrades(selectedRacer['id']);
+    console.log(currentState);
+    console.log('num upgrades: ' + numUpgrades);
+    console.log('num training sessions: ' + currentState['numTrainingSessions']);
+    if(numUpgrades >= currentState['numTrainingSessions']) {
         upgradeContainer.style.display = 'none';
         alreadyTrainedMsg.style.display = 'block';
         return;
@@ -128,7 +133,7 @@ function onRacerSelection(event) {
         alreadyTrainedMsg.style.display = 'none';
     }
 
-    pointsAvailable.innerText = defaultPointsAvailable;
+    pointsAvailable.innerText = defaultPointsAvailable * (parseInt(currentState['numTrainingSessions']) - parseInt(numUpgrades));
     let racerType = selectedRacer['type'] === 'crowdPleaser'? 'crowd pleaser' : selectedRacer['type'];
     youAreTrainingFor.innerText = `${selectedRacer['name']} (${racerType})`;
     let stats = getBestRaceStats();
@@ -161,6 +166,15 @@ function getBestRaceStats() {
     }
 
     return selectedRacer;
+}
+
+
+function getNumRacerUpgrades(id) {
+    if(id in racerUpgradeCountLookup)
+        return racerUpgradeCountLookup[id];
+
+    // if not in dictionary, no upgrades
+    return 0;
 }
 
 
@@ -248,7 +262,15 @@ function alreadyTrained(racer) {
 
         currentState = await getState();
         upgrades = await getUpgrades();
-        console.log(upgrades)
+        upgrades.forEach(upgrade => {
+            let id = upgrade['racerId'];
+            if(!(id in racerUpgradeCountLookup)) {
+                racerUpgradeCountLookup[id] = 0;
+            }
+
+            racerUpgradeCountLookup[id]++;
+        })
+        console.log(racerUpgradeCountLookup);
         loadRacers();
         showHidePage('Training');
     }
