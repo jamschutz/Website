@@ -44,6 +44,12 @@ var upgradeContainer;
 var alreadyTrainedMsg;
 var youAreTrainingFor;
 
+const allBodyParts = [
+    'Head', 'Arms', 'Body', 'Legs'
+]
+var bodyPartElements = {}
+var bodyPartsLookup = {}
+
 const defaultPointsAvailable = 10;
 
 
@@ -108,6 +114,8 @@ async function loadRacers() {
             'steroids': 0,
             'idols': 0
         });
+
+        bodyPartsLookup[racer[5]] = racer[7];
     }
 
 
@@ -146,6 +154,15 @@ function onRacerSelection(event) {
 
         minValues[attribute] = racerStat;
     });
+
+    
+
+    // appearance
+    let bodyPartPieces = bodyPartsLookup[selectedRacer['id']].split(',');
+    bodyPartElements['Head'].src = `assets/BoshiPartsSprites_heads/BoshiHead${parseInt(bodyPartPieces[0])}.png`;
+    bodyPartElements['Arms'].src = `assets/BoshiParts_Bodies/Boshi_Arms_${getColor(bodyPartPieces[1])}.png`;
+    bodyPartElements['Body'].src = `assets/BoshiParts_Bodies/Boshi_Body_${getColor(bodyPartPieces[2])}.png`;
+    bodyPartElements['Legs'].src = `assets/BoshiParts_Bodies/Boshi_Legs_${getColor(bodyPartPieces[3])}.png`;
 }
 
 
@@ -272,6 +289,11 @@ function alreadyTrained(racer) {
 
             racerUpgradeCountLookup[id]++;
         })
+
+        allBodyParts.forEach(bodyPart => {
+            bodyPartElements[bodyPart] = document.getElementById(`boshiPart-${bodyPart}`);
+        });
+
         loadRacers();
         // showHidePage('Training');
     }
