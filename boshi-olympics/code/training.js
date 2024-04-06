@@ -120,9 +120,6 @@ function onRacerSelection(event) {
     selectedRacer = getRacer(selectedRacerName);
 
     let numUpgrades = getNumRacerUpgrades(selectedRacer['id']);
-    console.log(currentState);
-    console.log('num upgrades: ' + numUpgrades);
-    console.log('num training sessions: ' + currentState['numTrainingSessions']);
     if(numUpgrades >= currentState['numTrainingSessions']) {
         upgradeContainer.style.display = 'none';
         alreadyTrainedMsg.style.display = 'block';
