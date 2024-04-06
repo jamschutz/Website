@@ -166,6 +166,20 @@ function onRacerSelection(event) {
 }
 
 
+function getColor(c) {
+    if(c === 'g')
+        return 'Green';
+    if(c === 'o')
+        return 'Orange';
+    if(c === 'p')
+        return 'Pink';
+    if(c === 'y')
+        return 'Yellow'
+
+    return 'White';
+}
+
+
 function getRacer(id) {
     for(let i = 0; i < racers.length; i++) {
         if(racers[i]['id'] === id)
