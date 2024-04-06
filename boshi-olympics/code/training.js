@@ -273,6 +273,6 @@ function alreadyTrained(racer) {
             racerUpgradeCountLookup[id]++;
         })
         loadRacers();
-        showHidePage('Training');
+        // showHidePage('Training');
     }
 })(window, document, undefined);
