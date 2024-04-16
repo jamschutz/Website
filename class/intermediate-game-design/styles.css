@@ -487,3 +487,10 @@ hr {
     border-color: var(--background-blue);
     border-radius: 5px;
 }
+
+.requiredWarning {
+    margin-top: 5px;
+    color: var(--background-pink);
+    background: var(--link-purple);
+    width: 50%;
+}
