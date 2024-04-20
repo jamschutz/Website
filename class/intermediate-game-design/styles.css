@@ -1,0 +1,496 @@
+
+/* Variables / fonts / etc
+---------------------------------------*/
+@font-face {
+    font-family: 'MainFont-regular';
+    src: url('assets/Gambetta-Variable.woff2');
+}
+@font-face {
+    font-family: 'MainFont-bold';
+    src: url('/fonts/Switzer/Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.ttf'); 
+}
+@font-face {
+    font-family: 'MainFont-semibold';
+    src: url('/fonts/Switzer/Switzer_Complete/Fonts/WEB/fonts/Switzer-Medium.ttf'); 
+}
+@font-face {
+    font-family: 'MainFont-thin';
+    src: url('/fonts/Switzer/Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.ttf');
+}
+@font-face {
+    font-family: 'TitleFont-regular';
+    src: url('/fonts/Lato/Lato-Regular.ttf');
+}
+@font-face {
+    font-family: 'TitleFont-bold';
+    src: url('/fonts/Lato/Lato-Bold.ttf');
+}
+@font-face {
+    font-family: 'Monospace-regular';
+    src: url('/fonts/Inconsolata/Inconsolata-VariableFont_wdth\,wght.ttf')
+}
+:root {
+    --font-color: #000;
+    --background-pink: #ff9ecf;
+    --background-blue: #99d9ea;
+    --link-purple: #8553f7;
+    --header-green: #b7fb94;
+    --medium-gray: #575757;
+
+}
+/* Global styles
+---------------------------------------*/
+html {
+    font-family: 'MainFont-regular';
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-image: url('assets/pinksmiles.png');
+    background-repeat: repeat;
+    font-family: 'MainFont-regular';
+    font-weight: 450;
+    color: var(--font-color);
+}
+/* Header
+---------------------------------------*/
+header {
+}
+.Header-container nav ul li {
+    display: inline-block;
+    list-style: none;
+    font-family: 'MainFont-regular';
+    font-weight: 700;
+}
+.Header-container nav ul {
+    padding-inline-start: 0px;
+}
+.Header-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50px;
+    margin: auto;
+    background-color: var(--header-green);
+    margin-top: 25px;
+    font-size: 18px;
+}
+header a {
+    text-decoration: none;
+    color: black;
+}
+header a:hover {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 20px;
+    background-color: var(--background-pink);
+}
+/* Body
+---------------------------------------*/
+.Body {
+    flex-grow: 1;
+}
+/* Custom, iPhone Retina */
+@media only screen and (max-device-width: 480px) {
+    .Body-container {
+        width: 90vw;
+        padding: 0px 10px;
+    }
+
+    .Header-container {
+        width: calc(90vw + 20px);
+    }
+    .Header-container nav ul li {
+        margin: 10px 10px;
+    }
+
+    footer {
+        width: calc(90vw + 20px);
+    }
+
+    .Blog-commentNameInput input {
+        width: 87vw;
+    }
+    .Blog-commentInputField input[type="text"], textarea {
+        width: 87vw;
+    }
+
+    .Blog-commentNameInput select {
+        width: 87vw;
+    }
+}
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) and (max-device-width: 768px) {
+    .Body-container {
+        width: 85vw;
+        padding: 0px 20px;
+    }
+
+    .Header-container {
+        width: calc(85vw + 40px);
+    }
+    .Header-container nav ul li {
+        margin: 10px 30px;
+    }
+
+    footer {
+        width: calc(85vw + 40px);
+    }
+
+    .Blog-commentNameInput input {
+        width: 83vw;
+    }
+    .Blog-commentInputField input[type="text"], textarea {
+        width: 83vw;
+    }
+
+    .Blog-commentNameInput select {
+        width: 83vw;
+    }
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) and (max-device-width: 874px) {
+    .Body-container {
+        width: 80vw;
+        padding: 0px 35px;
+        max-width: 700px;
+    }
+
+    .Header-container {
+        width: calc(80vw + 70px);
+        max-width: 800px;
+    }
+    .Header-container nav ul li {
+        margin: 10px 30px;
+    }
+
+    footer {
+        width: calc(80vw + 70px);
+        max-width: 700px;
+    }
+
+    .Blog-commentNameInput input {
+        width: 78vw;
+    }
+    .Blog-commentInputField input[type="text"], textarea {
+        width: 78vw;
+    }
+
+    .Blog-commentNameInput select {
+        width: 78vw;
+    }
+}
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 874px) {
+    .Body-container {
+        width: 700px;
+        padding: 0px 50px;
+    }
+
+    .Header-container {
+        width: 800px;
+    }
+    .Header-container nav ul li {
+        margin: 10px 30px;
+    }
+
+    footer {
+        width: 700px;
+    }
+
+    .Blog-commentNameInput input {
+        width: 688px;
+    }
+    .Blog-commentInputField input[type="text"], textarea {
+        width: 688px;
+    }
+
+    .Blog-commentNameInput select {
+        width: 688px;
+    }
+}
+.Body-container {
+    /* width: 700px; */
+    margin: auto;
+    background: #d9f1ee;
+    /* padding: 0px 50px; */
+    margin-bottom: 70px;
+    padding-bottom: 85px;
+}
+.Body-container a {
+    color: var(--link-purple);
+}
+.Body-container a:hover {
+    font-family: 'MainFont-regular';
+    font-weight: 600;
+    font-style: italic;
+    background-color: var(--background-pink);
+}
+.Body-container a:visited {
+    color: var(--link-purple);
+    font-family: 'MainFont-regular';
+    font-weight: 600;
+    font-style: italic;
+    background-color: var(--background-pink);
+}
+/* Blog
+---------------------------------------*/
+.Blog-paragraph {
+    font-family: 'MainFont-regular';
+    font-weight: 450;
+    font-size: 18px;
+    margin-top: 25px;
+    text-align: justify;
+    line-height: 1.6em;
+}
+.Blog-title {
+    font-family: 'MainFont-regular';
+    font-weight: 700;
+    font-size: 42px;
+    margin-top: 25px;
+    padding-top: 25px;
+}
+.Blog-date {
+    font-family: 'MainFont-regular';
+    font-weight: 200;
+    font-size: 18px;
+    color: #3f3f3f;
+}
+.Blog-header {
+    font-family: 'MainFont-regular';
+    font-weight: 700;
+    font-size: 32px;
+    margin-top: 25px;
+}
+.Blog-subheader {
+    margin-top: 25px;
+    font-family: 'MainFont-regular';
+    font-size: 18px;
+}
+.Blog-imageFullWidth {
+    width: 100%;
+    margin-top: 25px;
+}
+.Blog-imageFullWidth img {
+    width: 100%;
+}
+/* Comments
+---------------------------------------*/
+.Blog-commentContainer {
+    margin-top: 25px;
+    background-color: var(--header-green);
+    padding: 15px;
+}
+#Blog-commentsHeader {
+    margin-top: 50px;
+    color: var(--link-purple);
+}
+#Blog-commentsHeader hr {
+    border-top: dotted 4px;
+    color: var(--link-purple);
+    border-bottom: 0px;
+}
+.Blog-commentInputField input[type="text"], textarea {
+    background-color : var(--header-green);
+    height: 100px; 
+    border: 1px solid var(--link-purple); 
+    padding: 5px;
+    font-family: 'MainFont-regular';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--link-purple);
+}
+.Blog-commentNameInput {
+    margin-bottom: 15px;
+}
+.Blog-commentNameInputLabel {
+    font-family: 'MainFont-regular';
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--link-purple);
+    flex-basis: 120px;
+    /* text-align: right; */
+    align-self: center;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.Blog-commentNameInput input {
+    background-color : var(--header-green);
+    /* width: 688px;  */
+    border: 1px solid var(--link-purple); 
+    padding: 5px;
+    font-family: 'MainFont-regular';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--link-purple);
+}
+.Blog-commentNameInput select {
+    background-color : var(--header-green);
+    /* width: 688px;  */
+    border: 1px solid var(--link-purple); 
+    padding: 5px;
+    font-family: 'MainFont-regular';
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--link-purple);
+}
+.racer-stats button {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
+.item button {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
+.Blog-commentInputField button {
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
+.Blog-commentName {
+    font-size: 20px;
+    font-weight: 550;
+    color: var(--link-purple);
+}
+.Blog-commentDate {
+    font-size: 16px;
+    font-weight: 350;
+}
+/* Footer
+---------------------------------------*/
+footer {
+    height: 20px;
+    flex-shrink: 0;
+    margin: auto;
+    margin-top: 70px;
+}
+hr {
+    height: 2px;
+    border: 0;
+    background-color: var(--background-pink);
+}
+.Body-container footer a {
+    color: var(--link-purple);
+}
+.Body-container footer a:hover {
+    background-color: var(--background-pink);
+}
+/* Meditations
+---------------------------------------*/
+.Meditations-gameSection {
+    margin-top: 70px;
+}
+.Archive-container {
+    font-size: 22px;
+    font-family: 'Monospace-regular';
+}
+.Archive-container a:hover {
+    font-family: 'Monospace-regular';
+}
+.Body-container .Archive-link {
+
+}
+.Body-container .Archive-link a {
+    color: var(--link-purple);
+    text-decoration: none;
+}
+/* Links
+---------------------------------------*/
+.Links-container {
+    margin-top: 50px;
+}
+
+
+.racerPointsAvailable {
+    margin-left: 100px;
+    padding: 10px;
+    width: 200px;
+}
+
+.racerPointsText {
+    font-weight: 800;
+    padding: 10px;
+    background: var(--background-pink);
+    color: var(--link-purple);
+    text-shadow: var(--header-green) 1px 1px 2px;
+}
+
+.neonTextLabel {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--link-purple);
+    text-shadow:
+        0 0 7px var(--background-pink),
+        0 0 10px var(--background-pink),
+        0 0 21px var(--background-pink),
+        0 0 42px var(--background-pink),
+        0 0 82px var(--background-pink),
+        0 0 92px var(--background-pink),
+        0 0 102px var(--background-pink),
+        0 0 151px var(--background-pink);
+}
+
+#racerTypeDescription {
+    color: var(--medium-gray);
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.itemDescription {
+    color: var(--medium-gray);
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.itemsShopHeader {
+    color: var(--link-purple);
+    font-weight: 800;
+    text-shadow: var(--header-green) 1px 1px 2px;
+    margin-left: 126px;
+    padding: 10px;
+}
+
+.boshiParts {
+    margin-bottom: 200px;
+}
+.boshiParts img {
+    width: 200px;
+    position: absolute;
+    left: 20%;
+    margin-top: -35px;
+}
+
+.boshiPartBtn {
+    position: absolute;
+    font-family: 'MainFont-regular';
+    font-weight: 800;
+    font-size: 16px;
+    background-color : var(--background-pink);
+    color: var(--link-purple);
+    border-color: var(--background-blue);
+    border-radius: 5px;
+}
+
+.requiredWarning {
+    margin-top: 5px;
+    color: var(--background-pink);
+    background: var(--link-purple);
+    width: 50%;
+}
