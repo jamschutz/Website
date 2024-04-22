@@ -7,30 +7,31 @@ function submit() {
     let help = document.getElementById('help').value;
 
     let showedWarning = false;
-    if(name == undefined || name == null || name == '') {
-        let warning = document.getElementById('nameWarning');
-        warning.style.display = 'block';
-        showedWarning = true;
-    }
-    if(reflection == undefined || reflection == null || reflection == '') {
-        let warning = document.getElementById('reflectionWarning');
-        warning.style.display = 'block';
-        showedWarning = true;
-    }
-    if(teamwork == undefined || teamwork == null || teamwork == '') {
-        let warning = document.getElementById('teamworkWarning');
-        warning.style.display = 'block';
-        showedWarning = true;
-    }
-    if(help == undefined || help == null || help == '') {
-        let warning = document.getElementById('helpWarning');
-        warning.style.display = 'block';
-        showedWarning = true;
-    }
+    if(showHideWarning('name')) showedWarning = true;
+    if(showHideWarning('reflection')) showedWarning = true;
+    if(showHideWarning('teamwork')) showedWarning = true;
+    if(showHideWarning('help')) showedWarning = true;
 
     
     let warning = document.getElementById('submitWarning');
     warning.style.display = showedWarning? 'block': 'none';
+    if(showedWarning) {
+        console.log('not all fields filled out, bailing');
+        return;
+    }
+
+
+
+}
+
+
+function showHideWarning(elementId) {
+    let data = document.getElementById(elementId).value;
+    let warning = document.getElementById(`${elementId}Warning`);
+    let showWarning = data == undefined || data == null || data == '';
+    warning.style.display = showWarning? 'block' : 'none';
+    
+    return showWarning;
 }
 
 
