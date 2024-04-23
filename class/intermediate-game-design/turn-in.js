@@ -1,4 +1,10 @@
-function submit() {
+var submittingResponse = false;
+
+
+async function submit() {
+    if(submittingResponse)
+        return;
+
     console.log('submit');
 
     let name = document.getElementById('name').value;
@@ -20,8 +26,23 @@ function submit() {
         return;
     }
 
-
-
+    submittingResponse = true;
+    
+    await fetch('https://docs.google.com/forms/u/1/d/e/1FAIpQLSc_K8lA-R9plxuuLHOW2APPd91pBqsvj8AHY4ZAMoLtl-jjPQ/formResponse', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        'entry.255255000': name,
+        'entry.2033258892': reflection,
+		'entry.1636864848': teamwork,
+		'entry.859166577':  help
+      }),
+      mode: 'no-cors'
+    })
+    
+    window.location.href ="/class/intermediate-game-design/submitted.html";
 }
 
 
@@ -41,6 +62,8 @@ function showHideWarning(elementId) {
     window.onload = init;
   
     async function init() {
+        submittingResponse = false;
+
         let submitBtn = document.getElementById('Blog-submitCommentBtn');
         submitBtn.addEventListener('click', submit);
     }
