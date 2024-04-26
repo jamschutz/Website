@@ -90,34 +90,12 @@ async function submitTrainingData() {
 }
 
 
-async function loadRacers() {   
-    let uri = getSheetsUrl('racers');
+async function loadRacers() {
+    await fetchAndStoreGameInfo();
+    let uri = `${API_BASE_URL}/${GET_RACERS_API}?gameId=${GAME_INFO['id']}`;
     const response = await fetch(uri);
-    const racersJson = await response.json();
-    
-    // skip 0th index because it's just the header
-    for(let i = 1; i < racersJson['values'].length; i++) {
-        let racer = racersJson['values'][i];
-
-        // empty line, skip
-        if(racer.length === 0)
-            continue;
-
-        racers.push({
-            'name': racer[1],
-            'speed': racer[2],
-            'stamina': racer[3],
-            'determination': racer[4],
-            'id': racer[5],
-            'type': racer[6],
-            'boshiBars': 0,
-            'steroids': 0,
-            'idols': 0
-        });
-
-        bodyPartsLookup[racer[5]] = racer[7];
-    }
-
+    racers = await response.json();
+    console.log(racers);
 
     let dropdown = document.getElementById('racerDropdown');
     racers.forEach(racer => {
@@ -293,16 +271,16 @@ function alreadyTrained(racer) {
         alreadyTrainedMsg = document.getElementById('alreadyTrainedMsg');
         youAreTrainingFor = document.getElementById('youAreTrainingFor');
 
-        currentState = await getState();
-        upgrades = await getUpgrades();
-        upgrades.forEach(upgrade => {
-            let id = upgrade['racerId'];
-            if(!(id in racerUpgradeCountLookup)) {
-                racerUpgradeCountLookup[id] = 0;
-            }
+        // currentState = await getState();
+        // upgrades = await getUpgrades();
+        // upgrades.forEach(upgrade => {
+        //     let id = upgrade['racerId'];
+        //     if(!(id in racerUpgradeCountLookup)) {
+        //         racerUpgradeCountLookup[id] = 0;
+        //     }
 
-            racerUpgradeCountLookup[id]++;
-        })
+        //     racerUpgradeCountLookup[id]++;
+        // })
 
         allBodyParts.forEach(bodyPart => {
             bodyPartElements[bodyPart] = document.getElementById(`boshiPart-${bodyPart}`);

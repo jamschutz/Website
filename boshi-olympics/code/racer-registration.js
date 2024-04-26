@@ -27,6 +27,8 @@ var bodyPartSelections = {
     'Legs': 0
 }
 
+var gameId;
+
 
 
 
@@ -35,28 +37,29 @@ async function submitRacer() {
     let speed = attributes['speed'].value == ''? 0 : attributes['speed'].value;
     let stamina = attributes['stamina'].value == ''? 0 : attributes['stamina'].value;
     let determination = attributes['determination'].value == ''? 0 : attributes['determination'].value;
-    let id = uuidv4();
-    let bodyPartStr = `${bodyPartSelections['Head'] + 1},${boshiPartColorsShort[bodyPartSelections['Arms']]},${boshiPartColorsShort[bodyPartSelections['Body']]},${boshiPartColorsShort[bodyPartSelections['Legs']]}`;
     
-    await fetch('https://docs.google.com/forms/u/2/d/e/1FAIpQLSenDKu3U4DCLzprMmBJFPXinZLHQBXefLr1_2kZE5xpQ91tMQ/formResponse', {
+    await fetch(`${API_BASE_URL}/${REGISTER_RACER_API}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/json',
       },
-      body: new URLSearchParams({
-        'entry.674049401': name,
-        'entry.1074850540': speed,
-		'entry.1545299839': stamina,
-		'entry.526267970':  determination,
-        'entry.422582051': id,
-        'entry.1519570609': selectedRacerType,
-        'entry.1768302599': bodyPartStr
-      }),
-      mode: 'no-cors'
+      body: JSON.stringify({
+        'name': name,
+        'speed': parseInt(speed),
+		'stamina': parseInt(stamina),
+		'determination':  parseInt(determination),
+        'type': selectedRacerType,
+        'bodyParts': {
+            'head': bodyPartSelections['Head'] + 1,
+            'body': boshiPartColorsShort[bodyPartSelections['Body']],
+            'arms': boshiPartColorsShort[bodyPartSelections['Arms']],
+            'legs': boshiPartColorsShort[bodyPartSelections['Legs']]
+        },
+        'gameId': GAME_INFO['id']
+      })
     })
     
     window.location.href ="/boshi-olympics/racer-submitted.html";
-    console.log(`submitting racer with name ${name} and speed ${speed}`);
 }
 
 
@@ -189,5 +192,7 @@ function resetAttributes() {
         let dropdown = document.getElementById('racerTypeDropdown');
         dropdown.addEventListener('change', resetAttributes);
         racerTypeInit();
+
+
     }
 })(window, document, undefined);
