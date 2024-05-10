@@ -1,0 +1,79 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+.Body {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+/* .Body-container {
+    display: flex;
+    flex-direction: row;
+    width: 1000px; 
+    height: 1000px;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+} */
+
+#ezio {
+    width: 25px;
+    position: absolute;
+    top: 380px;
+    left: 488px;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    /* background: url('img/ezio.webp'); */
+    /* -webkit-animation: spin 2s linear 3;
+    -moz-animation: spin 2s linear 3;
+    animation: spin 2s linear 3;
+    -webkit-animation: zoomin 6s 1;
+    -moz-animation: zoomin 6s 1;
+    animation: zoomin 6s 1; */
+}
+
+@-moz-keyframes spin { 
+    100% { -moz-transform: rotate(360deg); } 
+}
+@-webkit-keyframes spin { 
+    100% { -webkit-transform: rotate(360deg); } 
+}
+@keyframes spin { 
+    100% { 
+        -webkit-transform: rotate(360deg); 
+        transform:rotate(360deg); 
+    } 
+}
+
+@-webkit-keyframes zoomin {
+    0% {
+        -webkit-transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(2);
+    }
+
+}
+@-moz-keyframes zoomin {
+    0% {
+        -moz-transform: scale(1);
+    }
+    100% {
+        -moz-transform: scale(2);
+    }
+
+}
+@keyframes zoomin {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(2);
+        transform: scale(2);
+    }
+}

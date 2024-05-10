@@ -1,4 +1,3 @@
-var racers = [];
 var pointsAvailable;
 var attributes = {}
 const allAttributes = [
@@ -35,7 +34,6 @@ var minValues = {
     'steroids': 0,
     'idols': 0
 }
-var selectedRacer;
 var currentState;
 var upgrades;
 var racerUpgradeCountLookup = {}
@@ -90,29 +88,8 @@ async function submitTrainingData() {
 }
 
 
-async function loadRacers() {
-    await fetchAndStoreGameInfo();
-    let uri = `${API_BASE_URL}/${GET_RACERS_API}?gameId=${GAME_INFO['id']}`;
-    const response = await fetch(uri);
-    racers = await response.json();
-    console.log(racers);
-
-    let dropdown = document.getElementById('racerDropdown');
-    racers.forEach(racer => {
-        let option = document.createElement('option');
-        option.value = racer['id'];
-        option.innerHTML = racer['name'];
-        dropdown.appendChild(option);
-    });
-}
-
-
-function onRacerSelection(event) {
-    let selectedRacerId = event.target.value;
-    selectedRacer = getRacer(selectedRacerId);
-
-    let numUpgrades = getNumRacerUpgrades(selectedRacer['id']);
-    if(numUpgrades >= currentState['numTrainingSessions']) {
+function onRacerSelection(racer) {
+    if(racer['numUpgrades'] >= GAME_INFO['upgradesAvailable']) {
         upgradeContainer.style.display = 'none';
         alreadyTrainedMsg.style.display = 'block';
         return;
@@ -122,71 +99,54 @@ function onRacerSelection(event) {
         alreadyTrainedMsg.style.display = 'none';
     }
 
-    pointsAvailable.innerText = defaultPointsAvailable * (parseInt(currentState['numTrainingSessions']) - parseInt(numUpgrades));
-    let racerType = selectedRacer['type'] === 'crowdPleaser'? 'crowd pleaser' : selectedRacer['type'];
-    youAreTrainingFor.innerText = `${selectedRacer['name']} (${racerType})`;
-    let stats = getBestRaceStats();
-    allAttributes.forEach(attribute => {
-        let racerStat = parseInt(stats[attribute]);
-        attributes[attribute].value = racerStat;
+    pointsAvailable.innerText = defaultPointsAvailable * (GAME_INFO['upgradesAvailable'] - racer['numUpgrades']);
+    let racerType = racer['type'] === 'crowdPleaser'? 'crowd pleaser' : racer['type'];
+    youAreTrainingFor.innerText = `${racer['name']} (${racerType})`;
 
-        minValues[attribute] = racerStat;
+    // update racer stats
+    console.log(racer)
+    allAttributes.forEach(attribute => {
+        attributes[attribute].value = racer[attribute];
+        minValues[attribute] = racer[attribute];
     });
+}
+
+
+// function onRacerSelection(event) {
+//     let selectedRacerId = event.target.value;
+//     selectedRacer = getRacer(selectedRacerId);
+
+//     let numUpgrades = getNumRacerUpgrades(selectedRacer['id']);
+//     if(numUpgrades >= currentState['numTrainingSessions']) {
+//         upgradeContainer.style.display = 'none';
+//         alreadyTrainedMsg.style.display = 'block';
+//         return;
+//     }
+//     else {
+//         upgradeContainer.style.display = 'block';
+//         alreadyTrainedMsg.style.display = 'none';
+//     }
+
+//     pointsAvailable.innerText = defaultPointsAvailable * (parseInt(currentState['numTrainingSessions']) - parseInt(numUpgrades));
+//     let racerType = selectedRacer['type'] === 'crowdPleaser'? 'crowd pleaser' : selectedRacer['type'];
+//     youAreTrainingFor.innerText = `${selectedRacer['name']} (${racerType})`;
+//     let stats = getBestRaceStats();
+//     allAttributes.forEach(attribute => {
+//         let racerStat = parseInt(stats[attribute]);
+//         attributes[attribute].value = racerStat;
+
+//         minValues[attribute] = racerStat;
+//     });
 
     
 
-    // appearance
-    let bodyPartPieces = bodyPartsLookup[selectedRacer['id']].split(',');
-    bodyPartElements['Head'].src = `assets/BoshiPartsSprites_heads/BoshiHead${parseInt(bodyPartPieces[0])}.png`;
-    bodyPartElements['Arms'].src = `assets/BoshiParts_Bodies/Boshi_Arms_${getColor(bodyPartPieces[1])}.png`;
-    bodyPartElements['Body'].src = `assets/BoshiParts_Bodies/Boshi_Body_${getColor(bodyPartPieces[2])}.png`;
-    bodyPartElements['Legs'].src = `assets/BoshiParts_Bodies/Boshi_Legs_${getColor(bodyPartPieces[3])}.png`;
-}
-
-
-function getColor(c) {
-    if(c === 'g')
-        return 'Green';
-    if(c === 'o')
-        return 'Orange';
-    if(c === 'p')
-        return 'Pink';
-    if(c === 'y')
-        return 'Yellow'
-
-    return 'White';
-}
-
-
-function getRacer(id) {
-    for(let i = 0; i < racers.length; i++) {
-        if(racers[i]['id'] === id)
-            return racers[i];
-    }
-
-    console.error('unable to find racer with id: ' + id);
-    console.error('these are the racers i have: ' + racers);
-}
-
-
-function getBestRaceStats() {
-    for(let i = upgrades.length - 1; i >= 0; i--) {
-        if(upgrades[i]['racerId'] === selectedRacer['id'] && upgrades[i]['racerName'] === selectedRacer['name']) {
-            return upgrades[i];
-        }
-    }
-
-    return selectedRacer;
-}
-
-
-function getNumRacerUpgrades(id) {
-    if(id in racerUpgradeCountLookup)
-        return racerUpgradeCountLookup[id];
-
-    // if not in dictionary, no upgrades
-    return 0;
-}
+//     // appearance
+//     let bodyPartPieces = bodyPartsLookup[selectedRacer['id']].split(',');
+//     bodyPartElements['Head'].src = `assets/BoshiPartsSprites_heads/BoshiHead${parseInt(bodyPartPieces[0])}.png`;
+//     bodyPartElements['Arms'].src = `assets/BoshiParts_Bodies/Boshi_Arms_${getColor(bodyPartPieces[1])}.png`;
+//     bodyPartElements['Body'].src = `assets/BoshiParts_Bodies/Boshi_Body_${getColor(bodyPartPieces[2])}.png`;
+//     bodyPartElements['Legs'].src = `assets/BoshiParts_Bodies/Boshi_Legs_${getColor(bodyPartPieces[3])}.png`;
+// }
 
 
 
@@ -251,7 +211,7 @@ function alreadyTrained(racer) {
         submitCommentBtn.addEventListener("click", submitTrainingData);
 
         let dropdown = document.getElementById('racerDropdown');
-        dropdown.addEventListener('change', onRacerSelection);
+        dropdown.addEventListener('change', _onRacerSelection);
 
         ['speed', 'stamina', 'determination', 'boshiBars', 'steroids', 'idols'].forEach(attribute => {
             attributes[attribute] = document.getElementById(attribute);
@@ -271,20 +231,11 @@ function alreadyTrained(racer) {
         alreadyTrainedMsg = document.getElementById('alreadyTrainedMsg');
         youAreTrainingFor = document.getElementById('youAreTrainingFor');
 
-        // currentState = await getState();
-        // upgrades = await getUpgrades();
-        // upgrades.forEach(upgrade => {
-        //     let id = upgrade['racerId'];
-        //     if(!(id in racerUpgradeCountLookup)) {
-        //         racerUpgradeCountLookup[id] = 0;
-        //     }
-
-        //     racerUpgradeCountLookup[id]++;
-        // })
-
         allBodyParts.forEach(bodyPart => {
             bodyPartElements[bodyPart] = document.getElementById(`boshiPart-${bodyPart}`);
         });
+
+        OnRacerSelectionCallback = onRacerSelection;
 
         loadRacers();
         // showHidePage('Training');
