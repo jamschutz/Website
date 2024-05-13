@@ -4,8 +4,7 @@ const TARGET_TIME_IN_MILLISECONDS = 5000;
 const TOTAL_SPINS = 3;
 const MAX_SIZE = 300;
 
-// const TARGET_TIME = new Date(2024, 4, 13, 19);
-const TARGET_TIME = new Date(2024, 4, 13, 12, 57);
+const TARGET_TIME = new Date(2024, 4, 13, 19);
 console.log(TARGET_TIME);
 
 var audioFiles = [];
