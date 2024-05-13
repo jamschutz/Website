@@ -4,7 +4,8 @@ const TARGET_TIME_IN_MILLISECONDS = 5000;
 const TOTAL_SPINS = 3;
 const MAX_SIZE = 300;
 
-const TARGET_TIME = new Date(2024, 4, 13, 19);
+// const TARGET_TIME = new Date(2024, 4, 13, 19);
+const TARGET_TIME = new Date(2024, 4, 13, 12, 57);
 console.log(TARGET_TIME);
 
 var audioFiles = [];
@@ -35,6 +36,11 @@ function initAudioFiles() {
     audioFiles.push(new Audio('audio/bellsynth_11.wav'));
 }
 
+function playSunriseClip() {
+    let sunrise = new Audio('audio/sunrise.wav');
+    sunrise.play();
+}
+
 function playRandomAudio() {
     let i = randomIntFromInterval(0, audioFiles.length - 1);
     audioFiles[i].play();
@@ -42,7 +48,7 @@ function playRandomAudio() {
 
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+}
 
 
 // on window load
@@ -60,5 +66,6 @@ function randomIntFromInterval(min, max) { // min and max included
         var timeRemaining = TARGET_TIME.getTime() - Date.now();
         console.log(timeRemaining);
         setTimeout(spinAndGrow, timeRemaining);
+        setTimeout(playSunriseClip, timeRemaining - 14000);
     }
 })(window, document, undefined);
