@@ -106,6 +106,7 @@ header a:hover {
     .Body-container {
         width: 90vw;
         padding: 0px 10px;
+        padding-top: 25px;
     }
 
     .Header-container {
@@ -124,6 +125,7 @@ header a:hover {
     .Body-container {
         width: 85vw;
         padding: 0px 20px;
+        padding-top: 25px;
     }
 
     .Header-container {
@@ -143,6 +145,7 @@ header a:hover {
         width: 80vw;
         padding: 0px 35px;
         max-width: 700px;
+        padding-top: 25px;
     }
 
     .Header-container {
@@ -163,6 +166,7 @@ header a:hover {
     .Body-container {
         width: 700px;
         padding: 0px 50px;
+        padding-top: 200px;
     }
 
     .Header-container {
@@ -180,7 +184,6 @@ header a:hover {
     margin: auto;
     margin-bottom: 70px;
     padding-bottom: 85px;
-    margin-top: 200px;
 }
 .Body-container a {
     color: var(--link-purple);
