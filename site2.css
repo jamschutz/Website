@@ -214,3 +214,40 @@ header a:hover {
     font-style: italic;
     font-size: 32px;
 }
+.Blog-dividerContainer {
+    margin: 50px 0px;
+}
+.Blog-divider {
+    display: flex;
+    color: var(--medium-gray);
+}
+.Blog-divider hr {
+    flex-grow: 1;
+    border-top: dotted 2px;
+    align-self: center;
+    color: var(--medium-gray);
+    margin: 0px 10px;
+}
+.Blog-dividerFaders {
+    position: relative;
+    bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+    top: -15px;
+}
+.Blog-dividerFaderLeft {
+    width: 500px;
+    height: 5px;
+    background-image: linear-gradient(to left,
+        var(--background-blue-transparent),
+        var(--background-blue-opaque)
+    100%);
+}
+.Blog-dividerFaderRight {
+    width: 500px;
+    height: 5px;
+    background-image: linear-gradient(to right,
+        var(--background-blue-transparent),
+        var(--background-blue-opaque)
+    100%);
+}
