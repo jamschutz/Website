@@ -5,8 +5,8 @@
     src: url('/fonts/RobotoMono-VariableFont_wght.ttf');
 }
 @font-face {
-    font-family: 'MainFont-bold';
-    src: url('/fonts/Switzer/Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.ttf'); 
+    font-family: 'SecondaryFont';
+    src: url('/fonts/Gambetta-Variable.woff2'); 
 }
 @font-face {
     font-family: 'MainFont-semibold';
@@ -166,7 +166,7 @@ header a:hover {
     .Body-container {
         width: 700px;
         padding: 0px 50px;
-        padding-top: 200px;
+        padding-top: 70px;
     }
 
     .Header-container {
@@ -200,4 +200,17 @@ header a:hover {
     font-weight: 600;
     font-style: italic;
     background-color: var(--background-pink);
+}
+
+
+.Landing-navContainer {
+    display: block;
+    padding-left: 0px;
+}
+
+.Landing-navContainer li {
+    display: inline-block;
+    margin-right: 70px;
+    font-style: italic;
+    font-size: 32px;
 }
