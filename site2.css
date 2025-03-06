@@ -2,7 +2,8 @@
 ---------------------------------------*/
 @font-face {
     font-family: 'MainFont-regular';
-    src: url('/fonts/RobotoMono-VariableFont_wght.ttf');
+    /* src: url('/fonts/RobotoMono-VariableFont_wght.ttf'); */
+    src: url('/fonts/Gambetta-Variable.woff2');
 }
 @font-face {
     font-family: 'SecondaryFont';
@@ -22,7 +23,7 @@
 }
 @font-face {
     font-family: 'TitleFont-bold';
-    src: url('/fonts/Lato/Lato-Bold.ttf');
+    src: url('/fonts/Lato-Bold.ttf');
 }
 @font-face {
     font-family: 'Monospace-regular';
